@@ -6,7 +6,7 @@ class Color(models.Model):
     """Модель цвета для дифференциации пользователей."""
 
     hex_code = models.CharField(
-        max_length=7,
+        max_length=6,
         unique=True,
         verbose_name='hex-код цвета',
     )
@@ -25,7 +25,7 @@ class Color(models.Model):
         Добавляет удобочитаемый вывод при вызове экземпляра объекта
         на печать.
         """
-        return f'<{self.hex_code} ({self.cost})>'
+        return f'{self.hex_code}'
 
 
 class User(AbstractUser):
@@ -34,8 +34,8 @@ class User(AbstractUser):
     color = models.ForeignKey(
         Color,
         related_name='users',
-        on_delete=models.SET_DEFAULT,
-        default='#9933CC',
+        on_delete=models.SET_NULL,
+        null=True,
         verbose_name='цвет',
     )
 
@@ -52,4 +52,4 @@ class User(AbstractUser):
         Добавляет удобочитаемый вывод при вызове экземпляра объекта
         на печать.
         """
-        return f'<{self.username} ({self.color})>'
+        return f'{self.username}'

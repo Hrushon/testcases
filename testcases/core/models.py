@@ -28,7 +28,7 @@ class Theme(models.Model):
         Добавляет удобочитаемый вывод при вызове экземпляра объекта
         на печать.
         """
-        return f'<{self.title}>'
+        return f'{self.title}'
 
 
 class Test(models.Model):
@@ -43,8 +43,9 @@ class Test(models.Model):
         Theme,
         related_name='tests',
         verbose_name='тема',
-        on_delete=models.SET_DEFAULT,
-        default='нет подходящей темы',
+        on_delete=models.SET_NULL,
+        blank=True,
+        null=True,
     )
     date_creation = models.DateField(
         auto_now_add=True,
@@ -53,8 +54,8 @@ class Test(models.Model):
     author = models.ForeignKey(
         User,
         related_name='tests',
-        on_delete=models.SET_DEFAULT,
-        default='Hans Jürgen Eysenck',
+        on_delete=models.SET_NULL,
+        null=True,
         verbose_name='автор теста',
     )
     subjects = models.ManyToManyField(
@@ -83,7 +84,7 @@ class Test(models.Model):
         Добавляет удобочитаемый вывод при вызове экземпляра объекта
         на печать.
         """
-        return f'<{self.title} ({self.theme})>'
+        return f'{self.title} ({self.theme})'
 
 
 class UserTest(models.Model):
@@ -127,7 +128,7 @@ class UserTest(models.Model):
         Добавляет удобочитаемый вывод при вызове экземпляра объекта
         на печать.
         """
-        return f'<{self.subject} + {self.testcase}>'
+        return f'{self.subject} + {self.testcase}'
 
 
 class Answer(models.Model):
@@ -152,7 +153,7 @@ class Answer(models.Model):
         Добавляет удобочитаемый вывод при вызове экземпляра объекта
         на печать.
         """
-        return f'<{self.body_text}>'
+        return f'{self.body_text}'
 
 
 class Question(models.Model):
@@ -191,7 +192,7 @@ class Question(models.Model):
         Добавляет удобочитаемый вывод при вызове экземпляра объекта
         на печать.
         """
-        return f'<{self.body_text} ({self.test_base})>'
+        return f'{self.body_text} ({self.test_base})'
 
 
 class QuestionAnswer(models.Model):
@@ -204,7 +205,7 @@ class QuestionAnswer(models.Model):
     )
     answer = models.ForeignKey(
         Answer,
-        on_delete=models.SET_NULL,
+        on_delete=models.CASCADE,
         verbose_name='ответ',
     )
     correct = models.BooleanField()
@@ -229,7 +230,7 @@ class QuestionAnswer(models.Model):
         Добавляет удобочитаемый вывод при вызове экземпляра объекта
         на печать.
         """
-        return f'<{self.subject} + {self.testcase}>'
+        return f'{self.question} + {self.answer}'
 
 
 class UserQuestionAnswer(models.Model):
@@ -275,7 +276,7 @@ class UserQuestionAnswer(models.Model):
         Добавляет удобочитаемый вывод при вызове экземпляра объекта
         на печать.
         """
-        return f'<{self.subject} + {self.question}>'
+        return f'{self.subject} + {self.question}'
 
 
 class Wallet(models.Model):
@@ -284,13 +285,15 @@ class Wallet(models.Model):
     owner = models.OneToOneField(
         User,
         on_delete=models.CASCADE,
-        verbose_name='кошелек',
+        verbose_name='владелец',
     )
     total_won = models.PositiveSmallIntegerField(
         verbose_name='получено монет за все время',
+        default=0,
     )
     current_sum = models.PositiveSmallIntegerField(
         verbose_name='текущая сумма монет',
+        default=0,
     )
 
     class Meta:
@@ -313,4 +316,4 @@ class Wallet(models.Model):
         Добавляет удобочитаемый вывод при вызове экземпляра объекта
         на печать.
         """
-        return f'<{self.owner} + {self.current_sum}>'
+        return f'{self.owner} + {self.current_sum}'
