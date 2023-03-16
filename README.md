@@ -1,5 +1,5 @@
 
-![Workflow](https://github.com/Hrushon/testcases/actions/workflows/testcases.yml/badge.svg)
+![Workflow](https://github.com/Hrushon/testcases/actions/workflows/testcases_deploy.yml/badge.svg)
 
 ![Python](https://img.shields.io/badge/Python-3.10.9-blue?style=flat&logo=python&logoColor=yellow)
 ![Django](https://img.shields.io/badge/Django-4.0-red?style=flat&logo=django&logoColor=green)
@@ -39,7 +39,7 @@ sudo nano .env
 В файл вносим следующие данные:
 ```
 # секретный ключ для Django
-SECRET_KEY="django-insecure-__athl8^e51(0)zch#jgb3curg0k8wf!ivae9#z)q6e18^km@s"
+SECRET_KEY="django-insecure-k5gov!n^c^s4(k9%t1%!wzo#kt&34#l=n@k$kwj6&mk^cb%yy0"
 # указываем, что работаем с postgresql
 DB_ENGINE=django.db.backends.postgresql
 # указываем имя базы данных
