@@ -266,7 +266,7 @@ class UserQuestionAnswer(models.Model):
 
         constraints = [
             models.UniqueConstraint(
-                fields=['question', 'answer', 'subject',],
+                fields=['question', 'answer', 'subject'],
                 name='unique_question_subject',
             )
         ]
