@@ -8,13 +8,13 @@ from users.models import Color, User
 
 class UserCustomAdmin(UserAdmin):
     list_display = (
-        'username', 'email', 'first_name', 'last_name',
+        'username', 'first_name', 'last_name',
         'color', 'colored_name', 'is_staff',
     )
     fieldsets = (
         (None, {'fields': ('username', 'password')}),
         (_('Personal info'), {'fields': (
-            'first_name', 'last_name', 'email', 'color'
+            'first_name', 'last_name', 'color'
         )}),
         (_('Permissions'), {
             'fields': (

@@ -35,7 +35,9 @@ class User(AbstractUser):
         Color,
         related_name='users',
         on_delete=models.SET_NULL,
+        default=1,
         null=True,
+        blank=True,
         verbose_name='цвет',
     )
 

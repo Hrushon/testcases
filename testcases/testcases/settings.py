@@ -33,6 +33,7 @@ CSRF_TRUSTED_ORIGINS = ['http://127.0.0.1']
 # Application definition
 
 INSTALLED_APPS = [
+    'spare_kits.apps.SpareKitsConfig',
     'users.apps.UsersConfig',
     'core.apps.CoreConfig',
     'django.contrib.admin',
@@ -55,10 +56,12 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'testcases.urls'
 
+TEMPLATES_DIR = BASE_DIR / 'templates'
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [TEMPLATES_DIR],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -126,7 +129,9 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
-STATIC_ROOT = BASE_DIR / 'static'
+STATICFILES_DIRS = [BASE_DIR / 'static'] 
+
+# STATIC_ROOT = BASE_DIR / 'static'
 
 MEDIA_URL = 'media/'
 

@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+  {{ text }}
+{% endblock %}
+{% block content %}
+  {% include 'includes/switcher.html' %}
+  <div class="container py-2">
+    <div class="card bg-white text-light">
+      <img src="{% static 'img/index/orders.jpg' %}" class="card-img" alt="card-img-overlay">
+      <div class="card-img-overlay p-0 d-flex flex-column justify-content-end">
+        <h1 class="card-text text-center text-uppercase fw-bolder">{{ text }}</h1>
+      </div>
+    </div>
+  </div>
+  {% if request.GET.search and page_obj %}
+    <div class="container">
+      <h1 class="text-center fw-bolder">Результаты поиска</h1>
+      <h3 class="text-center fw-bolder">Количество найденных объектов: {{ page_obj.paginator.count }}</h3>
+    </div>
+  {% endif %}
+  <div class="container py-3">
+    {% if page_obj %}
+      {% for post in page_obj %}
+        {% include 'includes/article.html' %}
+      {% endfor %}
+      {% include 'includes/paginator.html' %}
+    {% else %}
+      {% if request.GET.search %}
+        {% include 'includes/search.html' %}
+      {% else %}
+        <p>
+          Еще не создано ни одной записи!<br>
+          Нажмите <a href="{% url 'posts:new_create' name='1' %}"
+          >Новая запись</a>, если хотите создать запись.
+        </p>
+      {% endif %}
+    {% endif %}
+  </div>
+{% endblock %}

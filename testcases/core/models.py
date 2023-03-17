@@ -44,7 +44,6 @@ class Test(models.Model):
         related_name='tests',
         verbose_name='тема',
         on_delete=models.SET_NULL,
-        blank=True,
         null=True,
     )
     date_creation = models.DateField(

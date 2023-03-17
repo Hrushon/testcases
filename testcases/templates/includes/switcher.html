@@ -1,0 +1,41 @@
+{% with request.resolver_match.view_name as view_name %}
+  <div class="container my-2">
+    <ul class="nav nav-tabs nav-fill justify-content-center fw-bolder">
+      <li class="nav-item">
+        <a class="nav-link {% if view_name  == 'posts:index' %}
+          active{% endif %}" href="{% url 'posts:index' %}"
+        ><i class="bi bi-house-door" style="font-size: 1.2rem; color: cornflowerblue;"></i> Главная</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link {% if view_name  == 'posts:orders' %}
+          active{% endif %}" href="{% url 'posts:orders' %}"
+        ><i class="bi bi-card-list" style="font-size: 1.2rem; color: cornflowerblue;"></i> Объявления, приказы и распоряжения</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link {% if view_name  == 'posts:teh_class' %}
+          active{% endif %}" href="{% url 'posts:teh_class' %}"
+        ><i class="bi bi-mortarboard" style="font-size: 1.2rem; color: cornflowerblue;"></i> Технические занятия</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link {% if view_name  == 'posts:incident' %}
+          active{% endif %}" href="{% url 'posts:incident' %}"
+        ><i class="bi bi-lightning" style="font-size: 1.2rem; color: cornflowerblue;"></i> Производственная безопасность</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link {% if view_name  == 'posts:activity' %}
+          active{% endif %}" href="{% url 'posts:activity' %}"
+        ><i class="bi bi-gear" style="font-size: 1.2rem; color: cornflowerblue;"></i> Деятельность депо</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link {% if view_name  == 'posts:social' %}
+          active{% endif %}" href="{% url 'posts:social' %}"
+        ><i class="bi bi-info-circle" style="font-size: 1.2rem; color: cornflowerblue;"></i> Социальная работа</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link{% if view_name  == 'posts:biblio' %}
+          active{% endif %}" href="{% url 'posts:biblio' %}"
+        ><i class="bi bi-book" style="font-size: 1.2rem; color: cornflowerblue;"></i> Библиотека</a>
+      </li>
+    </ul>
+  </div>
+{% endwith %}
