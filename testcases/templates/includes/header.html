@@ -1,11 +1,9 @@
 {% load static %}
-
 {% with request.resolver_match.view_name as view_name %}
   <nav class="navbar navbar-expand-lg navbar-light" style="background-color: white">
     <div class="container">
-      {% comment %}
       <a class="navbar-brand" href="{% url 'core:index' %}">
-        <img src="{% static 'img/logo1.png' %}"
+        <img src="{% static 'img/logo.png' %}"
           width="50" height="50" class="img-thumbnail" alt="">
         <span style="color:#778899"><b>Test Cases</b></span>
       </a>
@@ -14,49 +12,16 @@
       </button>
       <div class="collapse navbar-collapse m-auto" id="navbarNav">
         <ul class="nav nav-pills ms-auto">
-          {% comment %}
-          {% if user.is_authenticated and view_name != 'core:index' and view_name != 'about:history' %}
+          {% if view_name in 'core:index core:themes-list core:themes-detail core:tests-list' %}
             <form class="d-flex"
               {% if action_url %}
-               action="{% url action_url %}"
+                action="{% url action_url %}"
               {% endif %}
             >
-              <input class="form-control me-2 m-auto" type="search" name="search" placeholder="Введите запрос" aria-label="Search">
+              <input class="form-control me-2 m-auto" type="search" name="search" placeholder="Искать тест" aria-label="Search">
               <button class="btn btn-outline-primary m-auto me-2" type="submit"><i class="bi bi-binoculars-fill" style="font-size: 1.2rem; color: cornflowerblue;"></i></button>
             </form>
           {% endif %}
-          
-          <li class="nav-item">
-            <a class="nav-link {% if view_name  == 'about:author' %}
-              active{% endif %}" href="{% url 'about:author' %}">Об авторе</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link {% if view_name  == 'about:tech' %}
-              active{% endif %}" href="{% url 'about:tech' %}">Технологии</a>
-          </li>
-          
-          <li class="nav-item">
-            <a class="nav-link {% if view_name  == 'about:history' %}
-              active{% endif %}" href="{% url 'about:history' %}">История депо</a>
-          </li>
-          {% if user.is_authenticated %}
-            {% if perms.posts.add_post %}
-              <li class="nav-item dropdown my-auto">
-                <a class="nav-link dropdown-toggle href="" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false"
-                  {% if view_name  == 'core:new_create' %}
-                    active{% endif %}" href=""
-                >Новая запись</a>
-                <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDropdownMenuLink">
-                  <li><a class="dropdown-item" href="{% url 'core:new_create' name='1'%}">Приказ, распоряжение, объявление</a></li>
-                  <li><a class="dropdown-item" href="{% url 'core:new_create' name='2'%}">План-конспект</a></li>
-                  <li><a class="dropdown-item" href="{% url 'core:new_create' name='3'%}">Конспект тех.занятий</a></li>
-                  <li><a class="dropdown-item" href="{% url 'core:new_create' name='4'%}">О деятельности депо</a></li>
-                  <li><a class="dropdown-item" href="{% url 'core:new_create' name='5'%}">Социальная заметка</a></li>
-                  <li><a class="dropdown-item" href="{% url 'core:new_create' name='6'%}">Добавление файла в библиотеку</a></li>
-                  <li><a class="dropdown-item" href="{% url 'core:new_create' name='7'%}">Производственная безопасность</a></li>
-                </ul>
-              </li>
-            {% endif %}
           {% if user.is_authenticated %}
             <li class="nav-item">
               <a class="nav-link
@@ -78,7 +43,6 @@
                 active{% endif %}" href="{% url 'users:signup' %}">Регистрация</a>
             </li>
           {% endif %}
-          {% endcomment %}
         </ul>
       </div>
     </div>
@@ -88,10 +52,21 @@
   <span class="fs-5 my-auto me-2" style="color:#778899">
     <b>Сервис тестовых заданий</b>
   </span>
-  {% if user.get_full_name %}
+  {% if user.is_authenticated and user.get_full_name %}
     <span class="text-secondary my-auto me-2">
-      <i class="bi bi-person-check-fill" style="color: green;"></i><i> Добро пожаловать, 
+      <i class="bi bi-emoji-smile-fill" style="color: orange;"></i><i> Добро пожаловать, 
       <b style="color: #{{ user.color }};">{{ user.get_full_name }}</b>!</i>
+    </span>
+    <span class="text-secondary my-auto me-2">
+      <i>У Вас 
+        {% if user.wallet.current_sum != 0 %}
+          {{ user.wallet.current_sum }}
+        {% else %}
+          пока нет
+        {% endif %}
+        монет
+      </i>
+      <i class="bi bi-coin" style="color: gold;"></i>
     </span>
   {% endif %}
 </div>

@@ -33,6 +33,7 @@ CSRF_TRUSTED_ORIGINS = ['http://127.0.0.1']
 # Application definition
 
 INSTALLED_APPS = [
+    'sorl.thumbnail',
     'spare_kits.apps.SpareKitsConfig',
     'users.apps.UsersConfig',
     'core.apps.CoreConfig',

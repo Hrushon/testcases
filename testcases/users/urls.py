@@ -16,7 +16,23 @@ app_name = 'users'
 
 urlpatterns = [
     path(
-        'signup/', views.SignUp.as_view(),
+        'results/',
+        views.UserListView.as_view(),
+        name='users-list',   
+    ),
+    path(
+        'me/',
+        views.UserMeView.as_view(),
+        name='users-me',    
+    ),
+    path(
+        'me/color/<int:pk>/',
+        views.UserColorView.as_view(),
+        name='user-color',    
+    ),
+    path(
+        'signup/',
+        views.SignUp.as_view(),
         name='signup'
     ),
     path(

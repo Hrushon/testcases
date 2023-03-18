@@ -1,7 +1,7 @@
 from django.contrib import admin
 
 from .models import (Answer, Question, QuestionAnswer, Test, Theme,
-                     UserQuestionAnswer, UserTest, Wallet)
+                     UserQuestionAnswer, UserTest)
 
 
 class AnswerAdmin(admin.ModelAdmin):
@@ -12,11 +12,6 @@ class AnswerAdmin(admin.ModelAdmin):
 class ThemeAdmin(admin.ModelAdmin):
     search_fields = ('title',)
     list_display = ('title',)
-
-
-class WalletAdmin(admin.ModelAdmin):
-    search_fields = ('owner',)
-    list_display = ('owner', 'total_won', 'current_sum',)
 
 
 class UserTestInline(admin.TabularInline):
@@ -59,7 +54,6 @@ class UserQuestionAnswerAdmin(admin.ModelAdmin):
 
 admin.site.register(Answer, AnswerAdmin)
 admin.site.register(Theme, ThemeAdmin)
-admin.site.register(Wallet, WalletAdmin)
 admin.site.register(Test, TestAdmin)
 admin.site.register(Question, QuestionAdmin)
 admin.site.register(UserQuestionAnswer, UserQuestionAnswerAdmin)

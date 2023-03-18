@@ -184,6 +184,7 @@ class Question(models.Model):
     )
     one_correct_answer = models.BooleanField(
         default=True,
+        verbose_name='один правильный ответ',
     )
 
     class Meta:
@@ -284,43 +285,3 @@ class UserQuestionAnswer(models.Model):
         на печать.
         """
         return f'{self.subject} + {self.question}'
-
-
-class Wallet(models.Model):
-    """Кошелек с наградами пользователя."""
-
-    owner = models.OneToOneField(
-        User,
-        on_delete=models.CASCADE,
-        verbose_name='владелец',
-    )
-    total_won = models.PositiveSmallIntegerField(
-        verbose_name='получено монет за все время',
-        default=0,
-    )
-    current_sum = models.PositiveSmallIntegerField(
-        verbose_name='текущая сумма монет',
-        default=0,
-    )
-
-    class Meta:
-        """
-        Сортирует и добавляет названия в админке.
-        """
-        ordering = ('owner',)
-        verbose_name = 'кошелек'
-        verbose_name_plural = 'кошельки'
-
-        constraints = [
-            models.CheckConstraint(
-                check=models.Q(current_sum__lte=models.F('total_won')),
-                name='check_current_sum',
-            )
-        ]
-
-    def __str__(self):
-        """
-        Добавляет удобочитаемый вывод при вызове экземпляра объекта
-        на печать.
-        """
-        return f'{self.owner} + {self.current_sum}'

@@ -2,40 +2,27 @@
   <div class="container my-2">
     <ul class="nav nav-tabs nav-fill justify-content-center fw-bolder">
       <li class="nav-item">
-        <a class="nav-link {% if view_name  == 'posts:index' %}
-          active{% endif %}" href="{% url 'posts:index' %}"
-        ><i class="bi bi-house-door" style="font-size: 1.2rem; color: cornflowerblue;"></i> Главная</a>
+        <a class="nav-link {% if view_name  == 'core:index' %}
+          active{% endif %}" href="{% url 'core:index' %}"
+        ><i class="bi bi-house-door" style="font-size: 1.2rem; color: cornflowerblue;"></i>Главная</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link {% if view_name  == 'posts:orders' %}
-          active{% endif %}" href="{% url 'posts:orders' %}"
-        ><i class="bi bi-card-list" style="font-size: 1.2rem; color: cornflowerblue;"></i> Объявления, приказы и распоряжения</a>
+        <a class="nav-link {% if view_name  == 'core:themes-list' %}
+          active{% endif %}" href="{% url 'core:themes-list' %}"
+        ><i class="bi bi-mortarboard" style="font-size: 1.2rem; color: cornflowerblue;"></i>Тесты по темам</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link {% if view_name  == 'posts:teh_class' %}
-          active{% endif %}" href="{% url 'posts:teh_class' %}"
-        ><i class="bi bi-mortarboard" style="font-size: 1.2rem; color: cornflowerblue;"></i> Технические занятия</a>
+        <a class="nav-link {% if view_name  == 'users:users-list' %}
+          active{% endif %}" href="{% url 'users:users-list' %}"
+        ><i class="bi bi-people" style="font-size: 1.2rem; color: cornflowerblue;"></i>Пользователи</a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link {% if view_name  == 'posts:incident' %}
-          active{% endif %}" href="{% url 'posts:incident' %}"
-        ><i class="bi bi-lightning" style="font-size: 1.2rem; color: cornflowerblue;"></i> Производственная безопасность</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link {% if view_name  == 'posts:activity' %}
-          active{% endif %}" href="{% url 'posts:activity' %}"
-        ><i class="bi bi-gear" style="font-size: 1.2rem; color: cornflowerblue;"></i> Деятельность депо</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link {% if view_name  == 'posts:social' %}
-          active{% endif %}" href="{% url 'posts:social' %}"
-        ><i class="bi bi-info-circle" style="font-size: 1.2rem; color: cornflowerblue;"></i> Социальная работа</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link{% if view_name  == 'posts:biblio' %}
-          active{% endif %}" href="{% url 'posts:biblio' %}"
-        ><i class="bi bi-book" style="font-size: 1.2rem; color: cornflowerblue;"></i> Библиотека</a>
-      </li>
+      {% if user.is_authenticated %}
+        <li class="nav-item">
+          <a class="nav-link {% if view_name  == 'users:users-me' %}
+            active{% endif %}" href="{% url 'users:users-me' %}"
+          ><i class="bi bi-person-circle" style="font-size: 1.2rem; color: cornflowerblue;"></i>Личный кабинет</a>
+        </li>
+      {% endif %}
     </ul>
   </div>
 {% endwith %}

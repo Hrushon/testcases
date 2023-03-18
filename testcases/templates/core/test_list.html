@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load user_tags %}
+{% block title %}
+  {{ text }}
+{% endblock %}
+{% block content %}
+{% with request.resolver_match.view_name as view_name %}
+{% if view_name == 'core:themes-detail' %}
+  {% define object.tests.all as object_list %}
+  {% define 'В данной теме пока нет тестов!' as empty_list %}
+{% else %}
+  {% define 'Пока нет ни одного теста!' as empty_list %}
+{% endif %}
+  <div class="container py-4">
+    {% if view_name == 'core:themes-detail' %}
+      <h1 class="py-1 text-center text-info">{{ object.title }}</h1>
+    {% endif %}
+    <div class="row row-cols-2 row-cols-md-4 g-2">
+      {% for test in object_list %}
+        <div class="col">
+          <div class="card text-center h-100 text-dark bg-light">
+            <div class="card-header">
+              <p class="card-text lh-sm">{{ test.title|linebreaksbr }}</p>
+            </div>
+            <div class="card-body">
+              <p class="card-text"><small class="text-muted">
+                Количество вопросов: {{ test.questions.count }}
+              </small></p>
+              <p class="card-text">
+                <small class="text-muted">
+                  Награда за прохождение: {{ test.prize }} монет
+                </small>
+              </p>
+              <p class="card-text">
+                <small class="text-muted">
+                  Процент правильных ответов для успешного
+                  прохождения: {{ test.percent_success }} %
+                </small>
+              </p>
+            </div>
+            <div class="card-footer">
+              {% if user.is_authenticated %}
+                <a href="{% url 'core:tests-detail' test.pk %}"
+                  class="btn btn-success bg-gradient shadow rounded fw-bold"
+                ><i class="bi bi-vector-pen"></i>Пройти тест</a>
+              {% else %}
+                <small class="text-muted"
+                >Авторизуйтесь, чтобы пройти тестирование.</small>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+      {% empty %}
+        <p class="text-center">
+          {{ empty_list }}<br>
+        </p>
+      {% endfor %}
+    {% comment "" %}
+      {% include 'includes/paginator.html' %}
+    {% endcomment %}
+    </div>
+  </div>
+{% endwith %}
+{% endblock %}

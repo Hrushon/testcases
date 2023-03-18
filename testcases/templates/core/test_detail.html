@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+  {{ text }}
+{% endblock %}
+{% block content %}
+  <div class="container py-4">
+    <h1 class="py-1 text-center text-info">{{ title }}</h1>
+    <div class="row">
+      {% for question in object_list %}
+        <div class="card">
+          <h5 class="card-header">{{ question.body_text|linebreaksbr }}?</h5>
+          <div class="card-body">
+            <p class="card-text">
+              <small class="text-muted">
+              {% if not question.one_correct_answer %}
+                * укажите несколько правильных ответов
+              {% else %}
+                * на этот вопрос только один правильный ответ
+              {% endif %}
+              </small>
+            </p>
+            {% for answer in question.answers.all %}
+              {{ answer|lower }}
+            {% endfor %}
+          </div>
+        </div>
+      {% empty %}
+        <p class="text-center">
+          В этом тесте вопросов нет!<br>
+        </p>
+      {% endfor %}
+      {% include 'includes/paginator_test.html' %}
+    </div>
+  </div>
+{% endblock %}

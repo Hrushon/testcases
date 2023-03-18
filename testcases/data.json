@@ -4,13 +4,13 @@
         "pk": 1,
         "fields": {
             "password": "pbkdf2_sha256$320000$pb9xNhqQJbVNB21m2HrHA9$RCoitXPGK6+OwtfXUT5vtCa0a7GTQHny73yQalZLrVE=",
-            "last_login": null,
+            "last_login": "2023-03-18T06:29:43Z",
             "is_superuser": true,
             "username": "test",
             "email": "test@case.com",
             "is_staff": true,
             "is_active": true,
-            "date_joined": "2023-03-18T03:52:44.908Z",
+            "date_joined": "2023-03-18T03:52:44Z",
             "first_name": "Тест",
             "last_name": "Тестович",
             "photo": "user_avatar/default_user.jpg",
@@ -20,11 +20,91 @@
         }
     },
     {
+        "model": "core.theme",
+        "pk": 1,
+        "fields": {
+            "title": "Охрана труда",
+            "slug": "osh"
+        }
+    },
+    {
+        "model": "core.theme",
+        "pk": 2,
+        "fields": {
+            "title": "Система 5S",
+            "slug": "kanban"
+        }
+    },
+    {
+        "model": "core.theme",
+        "pk": 3,
+        "fields": {
+            "title": "Python",
+            "slug": "python"
+        }
+    },
+    {
+        "model": "core.theme",
+        "pk": 4,
+        "fields": {
+            "title": "Правила дорожного движения",
+            "slug": "pdd"
+        }
+    },
+    {
         "model": "users.color",
         "pk": 1,
         "fields": {
-            "hex_code": "9933CC",
+            "hex_code": "D8BFD8",
             "cost": 0
+        }
+    },
+    {
+        "model": "users.color",
+        "pk": 2,
+        "fields": {
+            "hex_code": "7B68EE",
+            "cost": 100
+        }
+    },
+    {
+        "model": "users.color",
+        "pk": 3,
+        "fields": {
+            "hex_code": "00FFFF",
+            "cost": 200
+        }
+    },
+    {
+        "model": "users.color",
+        "pk": 4,
+        "fields": {
+            "hex_code": "32CD32",
+            "cost": 300
+        }
+    },
+    {
+        "model": "users.color",
+        "pk": 5,
+        "fields": {
+            "hex_code": "FFD700",
+            "cost": 400
+        }
+    },
+    {
+        "model": "users.color",
+        "pk": 6,
+        "fields": {
+            "hex_code": "FF7F50",
+            "cost": 500
+        }
+    },
+    {
+        "model": "users.color",
+        "pk": 7,
+        "fields": {
+            "hex_code": "DC143C",
+            "cost": 600
         }
     }
 ]
