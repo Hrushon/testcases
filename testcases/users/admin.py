@@ -14,7 +14,7 @@ class UserCustomAdmin(UserAdmin):
     fieldsets = (
         (None, {'fields': ('username', 'password')}),
         (_('Personal info'), {'fields': (
-            'first_name', 'last_name', 'color'
+            'first_name', 'last_name', 'email', 'color'
         )}),
         (_('Permissions'), {
             'fields': (

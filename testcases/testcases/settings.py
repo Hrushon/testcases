@@ -111,6 +111,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 # Internationalization
 # https://docs.djangoproject.com/en/4.0/topics/i18n/
@@ -142,7 +143,16 @@ MEDIA_ROOT = BASE_DIR / 'media'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+LOGIN_URL = 'users:login'
+
+LOGIN_REDIRECT_URL = 'core:index'
+
+LOGOUT_REDIRECT_URL = 'core:index'  
+
 # Минимально возможная награда за прохождение теста
 MIN_PRIZE = 10
 # Максимально возможная награда за прохождение теста
 MAX_PRIZE = 100
+# Максималльное значение процента правильных ответов
+# для успешного прохождения теста
+MAX_PERCENT_SUCCESS = 100

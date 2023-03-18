@@ -14,6 +14,7 @@ class Theme(models.Model):
         max_length=256,
         verbose_name='название',
     )
+    slug = models.SlugField()
 
     class Meta:
         """
@@ -69,6 +70,13 @@ class Test(models.Model):
         ],
         verbose_name='награда',
     )
+    percent_success = models.PositiveSmallIntegerField(
+        validators=[
+            MaxValueValidator(settings.MAX_PERCENT_SUCCESS),
+        ],
+        verbose_name='процент правильных ответов для прохождения',
+    )
+    
 
     class Meta:
         """

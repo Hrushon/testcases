@@ -1,0 +1,30 @@
+[
+    {
+        "model": "users.user",
+        "pk": 1,
+        "fields": {
+            "password": "pbkdf2_sha256$320000$pb9xNhqQJbVNB21m2HrHA9$RCoitXPGK6+OwtfXUT5vtCa0a7GTQHny73yQalZLrVE=",
+            "last_login": null,
+            "is_superuser": true,
+            "username": "test",
+            "email": "test@case.com",
+            "is_staff": true,
+            "is_active": true,
+            "date_joined": "2023-03-18T03:52:44.908Z",
+            "first_name": "Тест",
+            "last_name": "Тестович",
+            "photo": "user_avatar/default_user.jpg",
+            "color": 1,
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "users.color",
+        "pk": 1,
+        "fields": {
+            "hex_code": "9933CC",
+            "cost": 0
+        }
+    }
+]

@@ -31,6 +31,19 @@ class Color(models.Model):
 class User(AbstractUser):
     """Кастомизация базовой модели пользователя."""
 
+    first_name = models.CharField(
+        max_length=150,
+        verbose_name='имя',
+    )
+    last_name = models.CharField(
+        max_length=150,
+        verbose_name='фамилия',
+    )
+    photo = models.ImageField(
+        upload_to='users_photos',
+        default='user_avatar/default_user.jpg',
+        verbose_name='фото пользователя',
+    )
     color = models.ForeignKey(
         Color,
         related_name='users',
