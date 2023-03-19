@@ -8,27 +8,34 @@
     <h1 class="py-1 text-center text-info">Результаты пользователей</h1>
     <div class="row g-0">
       {% for user in object_list %}
-        <div class="col-6 col-sm-7">
+        <div class="col-12 col-sm-4">
           <div class="card h-100" 
             style="background-color: #{{ user.color }};">
             <div class="card-body">
-              <h2 class="card-text">
-                <b>
-                  {{ user.get_full_name }}
-                </b>
+              <h2 class="card-text text-center">
+                {{ user.get_full_name }}
               </h2>
             </div>
           </div>
         </div>
-        <div class="col-6 col-sm-5">
+        <div class="col-12 col-sm-4">
           <div class="card h-100" 
             style="background-color: #{{ user.color }};">
             <div class="card-body">
-              <h4 class="card-text text-end">
-                <b>
-                  получено монет: {{ user.wallet.total_won }}
-                  <i class="bi bi-coin" style="color: gold;"></i>
-                </b>
+              <h4 class="card-text text-center">
+                из {{ user.tests_started }} тестов
+                пройдено {{ user.tests_finished }}
+              </h4>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-sm-4">
+          <div class="card h-100" 
+            style="background-color: #{{ user.color }};">
+            <div class="card-body">
+              <h4 class="card-text text-center">
+                получено монет: {{ user.wallet.total_won }}
+                <i class="bi bi-coin" style="color: gold;"></i>
               </h4>
             </div>
           </div>

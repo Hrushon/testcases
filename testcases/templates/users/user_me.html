@@ -28,22 +28,25 @@
             </h6>
             <br>
             {% if color %}
-              <h5 class="card-text lh-sm">
-                Следующий цвет для покупки:
-                <a href="{% url 'users:user-color' color.pk %}"
-                  class="btn shadow rounded fw-bold
-                  {% if user.wallet.current_sum < color.cost %} disabled{% endif %}"
-                  style="background-color: #{{ color.hex_code }};"
-                >
+              <form method="post" action="{% url 'users:user-color' color.pk %}">
+                {% csrf_token %}
+                <h5 class="card-text lh-sm">
+                  Следующий цвет для покупки:
+                  <button type="submit" class="btn shadow rounded fw-bold
+                    {% if user.wallet.current_sum < color.cost %} disabled{% endif %}"
+                    style="background-color: #{{ color.hex_code }};">
                   {% if user.wallet.current_sum < color.cost %}
                     Мало монет
                   {% else %}
                     Купить
                   {% endif %}</a>
-                <br>
-                Стоимость: {{ color.cost }}
-                <i class="bi bi-coin" style="color: gold;"></i>
-              </h5>
+                  </button>
+                  <br>
+                  Стоимость: {{ color.cost }}
+                  <i class="bi bi-coin" style="color: gold;"></i>
+                </h5>
+                </div>
+              </form>
             {% else %}
               <h5 class="card-text lh-sm">
                 Вы уже достигли максимального уровня. Доступных цветов нет.

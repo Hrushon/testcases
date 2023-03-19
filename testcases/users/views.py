@@ -1,5 +1,5 @@
 from django.contrib.auth import get_user_model
-from django.db.models import F
+from django.db.models import Case, Count, F, When
 from django.shortcuts import get_object_or_404
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, ListView, RedirectView, TemplateView
@@ -30,7 +30,11 @@ class UserListView(ListView):
     paginate_by = 10
 
     def get_queryset(self):
-        return User.objects.order_by('-wallet__total_won')
+        return User.objects.annotate(
+            tests_finished=Count(Case(When(usertest__finish=True, then=1)))
+        ).annotate(
+            tests_started=Count(Case(When(usertest__start=True, then=1)))
+        ).order_by('-wallet__total_won')
 
 
 class UserMeView(TemplateView):

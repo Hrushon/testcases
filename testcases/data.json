@@ -1,22 +1,26 @@
 [
     {
-        "model": "users.user",
+        "model": "core.test",
         "pk": 1,
         "fields": {
-            "password": "pbkdf2_sha256$320000$pb9xNhqQJbVNB21m2HrHA9$RCoitXPGK6+OwtfXUT5vtCa0a7GTQHny73yQalZLrVE=",
-            "last_login": "2023-03-18T06:29:43Z",
-            "is_superuser": true,
-            "username": "test",
-            "email": "test@case.com",
-            "is_staff": true,
-            "is_active": true,
-            "date_joined": "2023-03-18T03:52:44Z",
-            "first_name": "Тест",
-            "last_name": "Тестович",
-            "photo": "user_avatar/default_user.jpg",
-            "color": 1,
-            "groups": [],
-            "user_permissions": []
+            "title": "Тест по ОБЖ",
+            "theme": 1,
+            "date_creation": "2023-03-19",
+            "author": 1,
+            "prize": 50,
+            "percent_success": 75
+        }
+    },
+    {
+        "model": "core.test",
+        "pk": 2,
+        "fields": {
+            "title": "Тест по истории России для 9-го класса",
+            "theme": 2,
+            "date_creation": "2023-03-19",
+            "author": 1,
+            "prize": 60,
+            "percent_success": 80
         }
     },
     {
@@ -31,24 +35,395 @@
         "model": "core.theme",
         "pk": 2,
         "fields": {
-            "title": "Система 5S",
-            "slug": "kanban"
+            "title": "История",
+            "slug": "history"
         }
     },
     {
-        "model": "core.theme",
+        "model": "core.answer",
+        "pk": 1,
+        "fields": {
+            "body_text": "несвоевременная регистрация туристической группы перед выходом на маршрут, отсутствие средств связи",
+            "question": 1,
+            "correct": false
+        }
+    },
+    {
+        "model": "core.answer",
+        "pk": 2,
+        "fields": {
+            "body_text": "потеря ориентировки на местности во время похода, авария транспортных средств, крупный лесной пожар",
+            "question": 1,
+            "correct": true
+        }
+    },
+    {
+        "model": "core.answer",
         "pk": 3,
         "fields": {
-            "title": "Python",
-            "slug": "python"
+            "body_text": "потеря части продуктов питания, потеря компаса",
+            "question": 1,
+            "correct": true
         }
     },
     {
-        "model": "core.theme",
+        "model": "core.answer",
         "pk": 4,
         "fields": {
-            "title": "Правила дорожного движения",
-            "slug": "pdd"
+            "body_text": "одежда должна быть свободной, чистой и сухой, носиться в несколько слоев",
+            "question": 2,
+            "correct": true
+        }
+    },
+    {
+        "model": "core.answer",
+        "pk": 5,
+        "fields": {
+            "body_text": "одежда должна быть из синтетических материалов",
+            "question": 2,
+            "correct": false
+        }
+    },
+    {
+        "model": "core.answer",
+        "pk": 6,
+        "fields": {
+            "body_text": "одежда должна быть из однотонного или камуфлированного материала, чистой и сухой",
+            "question": 2,
+            "correct": false
+        }
+    },
+    {
+        "model": "core.answer",
+        "pk": 7,
+        "fields": {
+            "body_text": "от всех поражающих факторов ядерного взрыва",
+            "question": 3,
+            "correct": false
+        }
+    },
+    {
+        "model": "core.answer",
+        "pk": 8,
+        "fields": {
+            "body_text": "от всех поражающих факторов ядерного взрыва, от химического и бактериологического оружия",
+            "question": 3,
+            "correct": true
+        }
+    },
+    {
+        "model": "core.answer",
+        "pk": 9,
+        "fields": {
+            "body_text": "от химического и бактериологического оружия, а также радиоактивного заражения",
+            "question": 3,
+            "correct": false
+        }
+    },
+    {
+        "model": "core.answer",
+        "pk": 10,
+        "fields": {
+            "body_text": "от ударной волны ядерного взрыва и обычных средств поражения",
+            "question": 3,
+            "correct": false
+        }
+    },
+    {
+        "model": "core.answer",
+        "pk": 11,
+        "fields": {
+            "body_text": "1892 г.",
+            "question": 4,
+            "correct": false
+        }
+    },
+    {
+        "model": "core.answer",
+        "pk": 12,
+        "fields": {
+            "body_text": "1894 г.",
+            "question": 4,
+            "correct": true
+        }
+    },
+    {
+        "model": "core.answer",
+        "pk": 13,
+        "fields": {
+            "body_text": "1896 г.",
+            "question": 4,
+            "correct": false
+        }
+    },
+    {
+        "model": "core.answer",
+        "pk": 14,
+        "fields": {
+            "body_text": "1898 г.",
+            "question": 4,
+            "correct": false
+        }
+    },
+    {
+        "model": "core.answer",
+        "pk": 15,
+        "fields": {
+            "body_text": "М.Т. Лорис-Меликов",
+            "question": 5,
+            "correct": false
+        }
+    },
+    {
+        "model": "core.answer",
+        "pk": 16,
+        "fields": {
+            "body_text": "В.К. Плеве",
+            "question": 5,
+            "correct": false
+        }
+    },
+    {
+        "model": "core.answer",
+        "pk": 17,
+        "fields": {
+            "body_text": "Н.Х. Бунге",
+            "question": 5,
+            "correct": false
+        }
+    },
+    {
+        "model": "core.answer",
+        "pk": 18,
+        "fields": {
+            "body_text": "П.Д. Святополк-Мирский",
+            "question": 5,
+            "correct": true
+        }
+    },
+    {
+        "model": "core.answer",
+        "pk": 19,
+        "fields": {
+            "body_text": "В.М. Чернов",
+            "question": 6,
+            "correct": true
+        }
+    },
+    {
+        "model": "core.answer",
+        "pk": 20,
+        "fields": {
+            "body_text": "П.Н. Милюков",
+            "question": 6,
+            "correct": false
+        }
+    },
+    {
+        "model": "core.answer",
+        "pk": 21,
+        "fields": {
+            "body_text": "Г.В. Плеханов",
+            "question": 6,
+            "correct": false
+        }
+    },
+    {
+        "model": "core.answer",
+        "pk": 22,
+        "fields": {
+            "body_text": "П.Н. Ткачёв",
+            "question": 6,
+            "correct": false
+        }
+    },
+    {
+        "model": "core.answer",
+        "pk": 23,
+        "fields": {
+            "body_text": "предоставлении нациям права на самоопределение",
+            "question": 7,
+            "correct": false
+        }
+    },
+    {
+        "model": "core.answer",
+        "pk": 24,
+        "fields": {
+            "body_text": "неизбежности капиталистической стадии развития в России",
+            "question": 7,
+            "correct": false
+        }
+    },
+    {
+        "model": "core.answer",
+        "pk": 25,
+        "fields": {
+            "body_text": "принципах кадрового пополнения и организации РСДРП",
+            "question": 7,
+            "correct": true
+        }
+    },
+    {
+        "model": "core.answer",
+        "pk": 26,
+        "fields": {
+            "body_text": "сохранении помещичьей земельной собственности",
+            "question": 7,
+            "correct": false
+        }
+    },
+    {
+        "model": "core.answer",
+        "pk": 27,
+        "fields": {
+            "body_text": "красная линия",
+            "question": 8,
+            "correct": false
+        }
+    },
+    {
+        "model": "core.answer",
+        "pk": 28,
+        "fields": {
+            "body_text": "черта оседлости",
+            "question": 8,
+            "correct": true
+        }
+    },
+    {
+        "model": "core.answer",
+        "pk": 29,
+        "fields": {
+            "body_text": "полоса отчуждения",
+            "question": 8,
+            "correct": false
+        }
+    },
+    {
+        "model": "core.answer",
+        "pk": 30,
+        "fields": {
+            "body_text": "железный занавес",
+            "question": 8,
+            "correct": false
+        }
+    },
+    {
+        "model": "core.answer",
+        "pk": 31,
+        "fields": {
+            "body_text": "нечаевщина",
+            "question": 9,
+            "correct": false
+        }
+    },
+    {
+        "model": "core.answer",
+        "pk": 32,
+        "fields": {
+            "body_text": "разинщина",
+            "question": 9,
+            "correct": false
+        }
+    },
+    {
+        "model": "core.answer",
+        "pk": 33,
+        "fields": {
+            "body_text": "зубатовщина",
+            "question": 9,
+            "correct": true
+        }
+    },
+    {
+        "model": "core.answer",
+        "pk": 34,
+        "fields": {
+            "body_text": "пугачёвщина",
+            "question": 9,
+            "correct": false
+        }
+    },
+    {
+        "model": "core.question",
+        "pk": 1,
+        "fields": {
+            "body_text": "Из перечисленных ниже причин выберите те, которые являются причинами вынужденного автономного существования в природных условиях",
+            "test_base": 1,
+            "one_correct_answer": false
+        }
+    },
+    {
+        "model": "core.question",
+        "pk": 2,
+        "fields": {
+            "body_text": "Готовясь к походу, вам необходимо правильно подобрать одежду. Каким нижеперечисленным требованиям она должна соответствовать",
+            "test_base": 1,
+            "one_correct_answer": true
+        }
+    },
+    {
+        "model": "core.question",
+        "pk": 3,
+        "fields": {
+            "body_text": "От каких поражающих факторов оружия массового поражения защищает убежище",
+            "test_base": 1,
+            "one_correct_answer": true
+        }
+    },
+    {
+        "model": "core.question",
+        "pk": 4,
+        "fields": {
+            "body_text": "Вступление Николая II на престол произошло в",
+            "test_base": 2,
+            "one_correct_answer": true
+        }
+    },
+    {
+        "model": "core.question",
+        "pk": 5,
+        "fields": {
+            "body_text": "Кто из названных государственных деятелей занимал пост министра внутренних дел с 1904 г. и предложил императору Николаю II программу либеральных преобразований",
+            "test_base": 2,
+            "one_correct_answer": true
+        }
+    },
+    {
+        "model": "core.question",
+        "pk": 6,
+        "fields": {
+            "body_text": "В создании Партии социалистов-революционеров в 1902 г. видную роль играл",
+            "test_base": 2,
+            "one_correct_answer": true
+        }
+    },
+    {
+        "model": "core.question",
+        "pk": 7,
+        "fields": {
+            "body_text": "Большевики и меньшевики расходились в вопросе о",
+            "test_base": 2,
+            "one_correct_answer": true
+        }
+    },
+    {
+        "model": "core.question",
+        "pk": 8,
+        "fields": {
+            "body_text": "Какой термин связан с сохранявшимися в царствование Николая II ограничениями по отношению к евреям",
+            "test_base": 2,
+            "one_correct_answer": true
+        }
+    },
+    {
+        "model": "core.question",
+        "pk": 9,
+        "fields": {
+            "body_text": "Какой термин связан с царствованием Николая II",
+            "test_base": 2,
+            "one_correct_answer": true
         }
     },
     {
@@ -105,6 +480,35 @@
         "fields": {
             "hex_code": "DC143C",
             "cost": 600
+        }
+    },
+    {
+        "model": "users.wallet",
+        "pk": 1,
+        "fields": {
+            "owner": 1,
+            "total_won": 1000,
+            "current_sum": 1000
+        }
+    },
+    {
+        "model": "users.user",
+        "pk": 1,
+        "fields": {
+            "password": "pbkdf2_sha256$320000$pb9xNhqQJbVNB21m2HrHA9$RCoitXPGK6+OwtfXUT5vtCa0a7GTQHny73yQalZLrVE=",
+            "last_login": "2023-03-19T06:18:23.104Z",
+            "is_superuser": true,
+            "username": "test",
+            "email": "test@case.com",
+            "is_staff": true,
+            "is_active": true,
+            "date_joined": "2023-03-18T03:52:44Z",
+            "first_name": "Тест",
+            "last_name": "Тестович",
+            "photo": "user_avatar/default_user.jpg",
+            "color": 1,
+            "groups": [],
+            "user_permissions": []
         }
     }
 ]

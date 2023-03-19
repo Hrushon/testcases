@@ -1,12 +1,16 @@
 from django.contrib import admin
 
-from .models import (Answer, Question, QuestionAnswer, Test, Theme,
+from .models import (Answer, Question, Test, Theme,
                      UserQuestionAnswer, UserTest)
 
 
 class AnswerAdmin(admin.ModelAdmin):
     search_fields = ('body_text',)
     list_display = ('body_text',)
+
+
+class AnswerInline(admin.TabularInline):
+    model = Answer
 
 
 class ThemeAdmin(admin.ModelAdmin):
@@ -18,10 +22,6 @@ class UserTestInline(admin.TabularInline):
     model = UserTest
 
 
-class QuestionAnswerInline(admin.TabularInline):
-    model = QuestionAnswer
-
-
 class QuestionInline(admin.TabularInline):
     model = Question
 
@@ -31,13 +31,13 @@ class TestAdmin(admin.ModelAdmin):
     list_filter = ('title', 'theme', 'date_creation', 'author', 'prize',)
     list_display = ('title', 'theme',)
     list_editable = ('theme',)
-    readonly_fields = ('queestions_count',)
+    readonly_fields = ('questions_count',)
     inlines = (UserTestInline, QuestionInline,)
 
-    def queestions_count(self, instance):
+    def questions_count(self, instance):
         return instance.questions.count()
 
-    queestions_count.short_description = 'Количество вопросов'
+    questions_count.short_description = 'Количество вопросов'
 
 
 class QuestionAdmin(admin.ModelAdmin):
@@ -45,7 +45,7 @@ class QuestionAdmin(admin.ModelAdmin):
     list_display = ('body_text', 'test_base',)
     list_filter = ('test_base', 'one_correct_answer',)
     list_editable = ('test_base',)
-    inlines = (QuestionAnswerInline,)
+    inlines = (AnswerInline,)
 
 
 class UserQuestionAnswerAdmin(admin.ModelAdmin):
