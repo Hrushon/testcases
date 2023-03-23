@@ -7,19 +7,22 @@
           width="50" height="50" class="img-thumbnail" alt="">
         <span style="color:#778899"><b>Test Cases</b></span>
       </a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Переключатель навигации">
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+        data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
+        aria-label="Переключатель навигации">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse m-auto" id="navbarNav">
         <ul class="nav nav-pills ms-auto">
           {% if view_name in "core:index core:themes-list core:themes-detail core:tests-list" %}
-            <form class="d-flex"
-              {% if action_url %}
-                action="{% url "core:tests-list" %}"
-              {% endif %}
-            >
-              <input class="form-control me-2 m-auto" type="search" name="search" placeholder="Искать тест" aria-label="Search">
-              <button class="btn btn-outline-primary m-auto me-2" type="submit"><i class="bi bi-binoculars-fill" style="font-size: 1.2rem; color: cornflowerblue;"></i></button>
+            <form class="d-flex" action="{% url "core:tests-list" %}">
+              <input class="form-control me-2 m-auto" type="search" name="search"
+                placeholder="Искать тест" aria-label="Search">
+              <button class="btn btn-outline-primary m-auto me-2" type="submit">
+                <i class="bi bi-binoculars-fill"
+                  style="font-size: 1.2rem; color: cornflowerblue;"
+                ></i>
+              </button>
             </form>
           {% endif %}
           {% if user.is_authenticated %}
@@ -36,11 +39,13 @@
           {% else %}
             <li class="nav-item">
               <a class="nav-link {% if view_name  == "users:login" %}
-                active{% endif %}" href="{% url "users:login" %}">Войти <i class="bi bi-fingerprint" style="font-size: 1.1rem;"></i></a>
+                active{% endif %}" href="{% url "users:login" %}">Войти 
+                <i class="bi bi-fingerprint" style="font-size: 1.1rem;"></i></a>
             </li>
             <li class="nav-item">
               <a class="nav-link {% if view_name  == "users:signup" %}
-                active{% endif %}" href="{% url "users:signup" %}">Регистрация</a>
+                active{% endif %}" href="{% url "users:signup" %}"
+              >Регистрация</a>
             </li>
           {% endif %}
         </ul>
@@ -54,7 +59,8 @@
   </span>
   {% if user.is_authenticated and user.get_full_name %}
     <span class="text-secondary my-auto me-2">
-      <i class="bi bi-emoji-smile-fill" style="color: orange;"></i><i> Добро пожаловать, 
+      <i class="bi bi-emoji-smile-fill" style="color: orange;"></i><i> 
+        Добро пожаловать, 
       <b style="color: #{{ user.color }};">{{ user.get_full_name }}</b>!</i>
     </span>
     <span class="text-secondary my-auto me-2">

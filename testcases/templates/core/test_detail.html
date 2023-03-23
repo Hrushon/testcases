@@ -32,7 +32,8 @@
               {{ user.get_full_name }}, Ваши результаты:
             </h3>
             <h5 class="card-text text-center">
-              Процент правильных ответов - {{ attempt.result|floatformat }}%
+              Процент правильных ответов - {{ attempt.result|floatformat }}%.
+              <br>
               {% if attempt.success %}
                 {{ test.title }} пройден!<br>
                 Вы заработали {{ test.prize }} монет.
@@ -41,7 +42,8 @@
                 Вы не заработали монет.
               {% endif %}
             </h5>
-            <div class="d-grid gap-2 d-md-block col-md-6 offset-md-4 py-3" role="group" aria-label="Простой пример">
+            <div class="d-grid gap-2 d-md-block col-md-6 offset-md-4 py-3"
+              role="group" aria-label="Простой пример">
               <a href="{% url "core:tests-detail" test.pk %}"
                 class="btn btn-primary bg-gradient shadow rounded fw-bold"
               >Пройти тест заново</a>

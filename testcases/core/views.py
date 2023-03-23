@@ -1,4 +1,5 @@
-from django.db.models import Count, Q
+from django.db.models import Count, F, Q
+from django.db.models.functions import Lower
 from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404
 from django.urls import reverse
@@ -11,7 +12,7 @@ from .models import Test, TestingData, Theme, UsersAttempt
 class ThemeListView(ListView):
     """Представление списка тем тестов."""
 
-    queryset = Theme.objects.select_related('tests')
+    model = Theme
     template_name = "core/themes_list.html"
 
     def get_context_data(self, **kwargs):
@@ -23,7 +24,7 @@ class ThemeListView(ListView):
 class ThemeDetailView(DetailView):
     """Представление списка тестов конкретной темы."""
 
-    model = Theme.objects.select_related('tests')
+    model = Theme
     template_name = "core/test_list.html"
 
     def get_context_data(self, **kwargs):
@@ -44,9 +45,11 @@ class TestListView(ListView):
 
     def get_queryset(self):
         search_query = self.request.GET.get('search')
+        if not search_query:
+            return self.queryset.all()
         return self.queryset.filter(
-            Q(title__icontains=search_query)
-            | Q(theme__title__icontains=search_query)
+            Q(title__iregex=search_query)
+            | Q(theme__title__iregex=search_query)
         )
 
     def get_context_data(self, **kwargs):
