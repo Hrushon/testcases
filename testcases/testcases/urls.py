@@ -25,6 +25,9 @@ urlpatterns = [
     path('admin/', admin.site.urls),
 ]
 
+handler404 = 'spare_kits.views.page_not_found'
+handler500 = 'spare_kits.views.server_error'
+
 if settings.DEBUG:
     urlpatterns += static(
         settings.MEDIA_URL, document_root=settings.MEDIA_ROOT

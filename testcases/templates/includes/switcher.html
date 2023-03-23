@@ -2,24 +2,24 @@
   <div class="container my-2">
     <ul class="nav nav-tabs nav-fill justify-content-center fw-bolder">
       <li class="nav-item">
-        <a class="nav-link {% if view_name  == 'core:index' %}
-          active{% endif %}" href="{% url 'core:index' %}"
+        <a class="nav-link {% if view_name  == "core:index" %}
+          active{% endif %}" href="{% url "core:index" %}"
         ><i class="bi bi-house-door" style="font-size: 1.2rem; color: cornflowerblue;"></i>Главная</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link {% if view_name  == 'core:themes-list' %}
-          active{% endif %}" href="{% url 'core:themes-list' %}"
+        <a class="nav-link {% if view_name  == "core:themes-list" %}
+          active{% endif %}" href="{% url "core:themes-list" %}"
         ><i class="bi bi-mortarboard" style="font-size: 1.2rem; color: cornflowerblue;"></i>Тесты по темам</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link {% if view_name  == 'users:users-list' %}
-          active{% endif %}" href="{% url 'users:users-list' %}"
+        <a class="nav-link {% if view_name  == "users:users-list" %}
+          active{% endif %}" href="{% url "users:users-list" %}"
         ><i class="bi bi-people" style="font-size: 1.2rem; color: cornflowerblue;"></i>Пользователи</a>
       </li>
       {% if user.is_authenticated %}
         <li class="nav-item">
-          <a class="nav-link {% if view_name  == 'users:users-me' %}
-            active{% endif %}" href="{% url 'users:users-me' %}"
+          <a class="nav-link {% if view_name  == "users:users-me" %}
+            active{% endif %}" href="{% url "users:users-me" %}"
           ><i class="bi bi-person-circle" style="font-size: 1.2rem; color: cornflowerblue;"></i>Личный кабинет</a>
         </li>
       {% endif %}

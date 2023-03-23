@@ -1,3 +1,4 @@
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.views import (
     LoginView,
     LogoutView,
@@ -18,17 +19,17 @@ urlpatterns = [
     path(
         'results/',
         views.UserListView.as_view(),
-        name='users-list',   
+        name='users-list',
     ),
     path(
         'me/',
-        views.UserMeView.as_view(),
-        name='users-me',    
+        login_required(views.UserMeView.as_view()),
+        name='users-me',
     ),
     path(
         'me/color/<int:pk>/',
-        views.UserColorView.as_view(),
-        name='user-color',    
+        login_required(views.UserColorView.as_view()),
+        name='user-color',
     ),
     path(
         'signup/',

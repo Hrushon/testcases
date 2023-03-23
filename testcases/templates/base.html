@@ -16,6 +16,15 @@
     <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
     <link rel="stylesheet" href="{% static 'icons/bootstrap-icons.css' %}">
     <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script language="JavaScript">
+      function terms_changed(termsCheckBox) {
+        document.getElementById("submit_button").disabled = !(
+          [...termsCheckBox.parentElement.querySelectorAll(
+            "input[type=radio]"
+          )].some(cb => cb.checked)
+        );
+      } 
+    </script>
     <title>
       {% block title %}
         Хм...

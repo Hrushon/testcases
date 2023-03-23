@@ -150,6 +150,8 @@ LOGIN_REDIRECT_URL = 'core:index'
 
 LOGOUT_REDIRECT_URL = 'core:index'  
 
+CSRF_FAILURE_VIEW = 'spare_kits.views.csrf_failure'
+
 # Минимально возможная награда за прохождение теста
 MIN_PRIZE = 10
 # Максимально возможная награда за прохождение теста

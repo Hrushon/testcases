@@ -30,10 +30,10 @@ class UserListView(ListView):
     paginate_by = 10
 
     def get_queryset(self):
-        return User.objects.annotate(
-            tests_finished=Count(Case(When(usertest__finish=True, then=1)))
+        return User.objects.select_related('wallet', 'color').annotate(
+            tests_started=Count('attempts')
         ).annotate(
-            tests_started=Count(Case(When(usertest__start=True, then=1)))
+            tests_success=Count(Case(When(attempts__success=True, then=1)))
         ).order_by('-wallet__total_won')
 
 

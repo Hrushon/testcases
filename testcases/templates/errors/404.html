@@ -1,7 +1,20 @@
 {% extends "base.html" %}
 {% block title %}Ошибка 404{% endblock %}
 {% block content %}
-  <h1>Ошибка 404</h1>
-  <p>Страницы с адресом {{ path }} не существует</p>
-  <a href="{% url 'core:index' %}">На главную страницу</a>
+<div class="container py-4">
+  <div class="card shadow-lg rounded">
+    <div class="card-body justify-content-center ">
+      <h3 class="card-title text-center">
+        Ошибка 404
+      </h3>
+      <p class="card-text text-center"
+      >Страницы с адресом {{ path }} не существует</p>
+      <div class="container-sm col-md-6 offset-md-5">
+        <a href="{% url "core:index" %}"
+          class="btn btn-primary bg-gradient shadow rounded fw-bold"
+        >На главную</a>
+      </div>
+    </div>
+  </div>
+</div>
 {% endblock %} 

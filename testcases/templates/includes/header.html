@@ -2,7 +2,7 @@
 {% with request.resolver_match.view_name as view_name %}
   <nav class="navbar navbar-expand-lg navbar-light" style="background-color: white">
     <div class="container">
-      <a class="navbar-brand" href="{% url 'core:index' %}">
+      <a class="navbar-brand" href="{% url "core:index" %}">
         <img src="{% static 'img/logo.png' %}"
           width="50" height="50" class="img-thumbnail" alt="">
         <span style="color:#778899"><b>Test Cases</b></span>
@@ -12,10 +12,10 @@
       </button>
       <div class="collapse navbar-collapse m-auto" id="navbarNav">
         <ul class="nav nav-pills ms-auto">
-          {% if view_name in 'core:index core:themes-list core:themes-detail core:tests-list' %}
+          {% if view_name in "core:index core:themes-list core:themes-detail core:tests-list" %}
             <form class="d-flex"
               {% if action_url %}
-                action="{% url action_url %}"
+                action="{% url "core:tests-list" %}"
               {% endif %}
             >
               <input class="form-control me-2 m-auto" type="search" name="search" placeholder="Искать тест" aria-label="Search">
@@ -25,22 +25,22 @@
           {% if user.is_authenticated %}
             <li class="nav-item">
               <a class="nav-link
-                {% if view_name  == 'users:password_change' %}
-                  active{% endif %}" href="{% url 'users:password_change' %}"
+                {% if view_name  == "users:password_change" %}
+                  active{% endif %}" href="{% url "users:password_change" %}"
               >Изменить пароль</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="{% url 'users:logout' %}"
+              <a class="nav-link" href="{% url "users:logout" %}"
               >Выйти</a>
             </li>
           {% else %}
             <li class="nav-item">
-              <a class="nav-link {% if view_name  == 'users:login' %}
-                active{% endif %}" href="{% url 'users:login' %}">Войти <i class="bi bi-fingerprint" style="font-size: 1.1rem;"></i></a>
+              <a class="nav-link {% if view_name  == "users:login" %}
+                active{% endif %}" href="{% url "users:login" %}">Войти <i class="bi bi-fingerprint" style="font-size: 1.1rem;"></i></a>
             </li>
             <li class="nav-item">
-              <a class="nav-link {% if view_name  == 'users:signup' %}
-                active{% endif %}" href="{% url 'users:signup' %}">Регистрация</a>
+              <a class="nav-link {% if view_name  == "users:signup" %}
+                active{% endif %}" href="{% url "users:signup" %}">Регистрация</a>
             </li>
           {% endif %}
         </ul>

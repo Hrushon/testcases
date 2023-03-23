@@ -6,17 +6,17 @@
 {% endblock %}
 {% block content %}
 {% with request.resolver_match.view_name as view_name %}
-{% if view_name == 'core:themes-detail' %}
+{% if view_name == "core:themes-detail" %}
   {% define object.tests.all as object_list %}
   {% define 'В данной теме пока нет тестов!' as empty_list %}
 {% else %}
   {% define 'Пока нет ни одного теста!' as empty_list %}
 {% endif %}
   <div class="container py-4">
-    {% if view_name == 'core:themes-detail' %}
+    {% if view_name == "core:themes-detail" %}
       <h1 class="py-1 text-center text-info">{{ object.title }}</h1>
     {% endif %}
-    <div class="row row-cols-2 row-cols-md-4 g-2">
+    <div class="row row-cols-4 cols-sm-12 g-6">
       {% for test in object_list %}
         <div class="col">
           <div class="card text-center h-100 text-dark bg-light">
@@ -41,7 +41,7 @@
             </div>
             <div class="card-footer">
               {% if user.is_authenticated %}
-                <a href="{% url 'core:tests-detail' test.pk %}"
+                <a href="{% url "core:tests-detail" test.pk %}"
                   class="btn btn-success bg-gradient shadow rounded fw-bold"
                 ><i class="bi bi-vector-pen"></i>Пройти тест</a>
               {% else %}
@@ -56,9 +56,6 @@
           {{ empty_list }}<br>
         </p>
       {% endfor %}
-    {% comment "" %}
-      {% include 'includes/paginator.html' %}
-    {% endcomment %}
     </div>
   </div>
 {% endwith %}

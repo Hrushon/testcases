@@ -14,7 +14,9 @@ class Theme(models.Model):
         max_length=256,
         verbose_name='название',
     )
-    slug = models.SlugField()
+    slug = models.SlugField(
+        verbose_name='слаг/аббревиатура темы',
+    )
 
     class Meta:
         """
@@ -58,11 +60,6 @@ class Test(models.Model):
         null=True,
         verbose_name='автор теста',
     )
-    subjects = models.ManyToManyField(
-        User,
-        through='UserTest',
-        verbose_name='испытуемые',
-    )
     prize = models.PositiveSmallIntegerField(
         validators=[
             MinValueValidator(settings.MIN_PRIZE),
@@ -93,43 +90,44 @@ class Test(models.Model):
         return f'{self.title} ({self.theme})'
 
 
-class UserTest(models.Model):
+class UsersAttempt(models.Model):
     """Промежуточная модель для связывания пользователей и тестов."""
 
     subject = models.ForeignKey(
         User,
+        related_name='attempts',
         on_delete=models.CASCADE,
         verbose_name='пользователь',
     )
     testcase = models.ForeignKey(
         Test,
+        related_name='users_attempts',
         on_delete=models.CASCADE,
         verbose_name='тест',
     )
-    start = models.BooleanField(
-        auto_created=True,
-        default=True,
-        verbose_name='пользователь начал проходить тест',
+    date_test = models.DateField(
+        auto_now_add=True,
+        verbose_name='дата прохождения пользователем теста',
     )
-    finish = models.BooleanField(
+    success = models.BooleanField(
+        auto_created=True,
         default=False,
-        verbose_name='пользователь окончил прохождение теста',
+        verbose_name='результат выполнения теста (сдал/не сдал)',
+    )
+    result = models.DecimalField(
+        null=True,
+        max_digits=5,
+        decimal_places=2,
+        verbose_name='процент правильных ответов',
     )
 
     class Meta:
         """
         Сортирует и добавляет названия в админке.
         """
-        ordering = ('testcase',)
+        ordering = ('subject',)
         verbose_name = 'пользователь + тест'
         verbose_name_plural = 'пользователи + тесты'
-
-        constraints = [
-            models.UniqueConstraint(
-                fields=['subject', 'testcase'],
-                name='unique_user_test',
-            )
-        ]
 
     def __str__(self):
         """
@@ -142,7 +140,7 @@ class UserTest(models.Model):
 class Question(models.Model):
     """Модель вопроса."""
 
-    body_text = models.CharField(
+    question_text = models.CharField(
         max_length=512,
         unique=True,
         verbose_name='текст вопроса',
@@ -153,16 +151,12 @@ class Question(models.Model):
         on_delete=models.CASCADE,
         verbose_name='тест',
     )
-    one_correct_answer = models.BooleanField(
-        default=True,
-        verbose_name='один правильный ответ',
-    )
 
     class Meta:
         """
         Сортирует и добавляет названия в админке.
         """
-        ordering = ('body_text',)
+        ordering = ('question_text',)
         verbose_name = 'вопрос'
         verbose_name_plural = 'вопросы'
 
@@ -171,13 +165,13 @@ class Question(models.Model):
         Добавляет удобочитаемый вывод при вызове экземпляра объекта
         на печать.
         """
-        return f'{self.body_text} ({self.test_base})'
+        return f'{self.question_text} ({self.test_base})'
 
 
 class Answer(models.Model):
     """Модель ответа."""
 
-    body_text = models.CharField(
+    answer_text = models.CharField(
         max_length=512,
         unique=True,
         verbose_name='текст ответа',
@@ -196,7 +190,7 @@ class Answer(models.Model):
         """
         Сортирует и добавляет названия в админке.
         """
-        ordering = ('body_text',)
+        ordering = ('?',)
         verbose_name = 'ответ'
         verbose_name_plural = 'ответы'
 
@@ -205,10 +199,10 @@ class Answer(models.Model):
         Добавляет удобочитаемый вывод при вызове экземпляра объекта
         на печать.
         """
-        return f'{self.body_text}'
+        return f'{self.answer_text}'
 
 
-class UserQuestionAnswer(models.Model):
+class TestingData(models.Model):
     """Модель для связывания вопроса и ответа пользователя."""
 
     question = models.ForeignKey(
@@ -220,35 +214,27 @@ class UserQuestionAnswer(models.Model):
         Answer,
         on_delete=models.CASCADE,
         verbose_name='ответ',
+        blank=True,
+        null=True,
     )
-    subject = models.ForeignKey(
-        User,
+    attempt = models.ForeignKey(
+        UsersAttempt,
+        related_name='testing_data',
         on_delete=models.CASCADE,
-        verbose_name='пользователь',
-    )
-    date_answering = models.DateTimeField(
-        auto_now_add=True,
-        verbose_name='дата ответа пользователя на вопрос',
+        verbose_name='попытка',
     )
 
     class Meta:
         """
         Сортирует и добавляет названия в админке.
         """
-        ordering = ('subject',)
-        verbose_name = 'вопрос + пользователь'
-        verbose_name_plural = 'вопросы + пользователи'
-
-        constraints = [
-            models.UniqueConstraint(
-                fields=['question', 'answer', 'subject'],
-                name='unique_question_subject',
-            )
-        ]
+        ordering = ('attempt',)
+        verbose_name = 'вопрос + ответ пользователя'
+        verbose_name_plural = 'вопросы + ответы пользователей'
 
     def __str__(self):
         """
         Добавляет удобочитаемый вывод при вызове экземпляра объекта
         на печать.
         """
-        return f'{self.subject} + {self.question}'
+        return f'{self.attempt} + {self.question}'
