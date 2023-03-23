@@ -14,7 +14,8 @@ urlpatterns = [
         'themes/', views.ThemeListView.as_view(), name='themes-list'
     ),
     path(
-        'themes/<slug:slug>/', views.ThemeDetailView.as_view(), name='themes-detail'
+        'themes/<slug:slug>/', views.ThemeDetailView.as_view(),
+        name='themes-detail'
     ),
     path(
         'tests/', views.TestListView.as_view(), name='tests-list'
@@ -26,6 +27,6 @@ urlpatterns = [
     path(
         'tests/<int:pk>/result/', login_required(TemplateView.as_view(
             template_name='core/test_detail.html'
-        )
-    ), name='tests-result'),
+        )), name='tests-result'
+    ),
 ]
