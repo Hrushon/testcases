@@ -1,7 +1,6 @@
 from django.contrib import admin
 
-from .models import (Answer, Question, Test, TestingData,
-                     Theme, UsersAttempt)
+from .models import Answer, Question, Test, TestingData, Theme, UsersAttempt
 
 
 class AnswerAdmin(admin.ModelAdmin):

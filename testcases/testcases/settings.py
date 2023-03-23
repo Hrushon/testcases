@@ -131,7 +131,7 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
-STATICFILES_DIRS = [BASE_DIR / 'static'] 
+STATICFILES_DIRS = [BASE_DIR / 'static']
 
 # STATIC_ROOT = BASE_DIR / 'static'
 
@@ -148,7 +148,7 @@ LOGIN_URL = 'users:login'
 
 LOGIN_REDIRECT_URL = 'core:index'
 
-LOGOUT_REDIRECT_URL = 'core:index'  
+LOGOUT_REDIRECT_URL = 'core:index'
 
 CSRF_FAILURE_VIEW = 'spare_kits.views.csrf_failure'
 

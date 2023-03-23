@@ -19,7 +19,7 @@ class TestingDataForm(forms.ModelForm):
 
     class Meta:
         model = TestingData
-        fields = ['answer',]
+        fields = ['answer', ]
 
     def __init__(self, *args, **kwargs):
         queryset = kwargs.pop('field_queryset', Answer.objects)

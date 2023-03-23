@@ -35,7 +35,7 @@ class ThemeDetailView(DetailView):
 class TestListView(ListView):
     """
     Представление общего списка тестов.
-    
+
     Используется при выдаче результатов теста по поисковому запросу.
     """
 
@@ -44,11 +44,10 @@ class TestListView(ListView):
 
     def get_queryset(self):
         search_query = self.request.GET.get('search')
-        objects = self.queryset.filter(
+        return self.queryset.filter(
             Q(title__icontains=search_query)
             | Q(theme__title__icontains=search_query)
         )
-        return objects
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -96,7 +95,7 @@ class TestDetailView(ListView, FormView):
                     'attempt': 0,
                 },
                 instance=self.testing_data,
-                field_queryset = context['question'].answers
+                field_queryset=context['question'].answers
             )
             return context
         context['attempt'] = self.attempt
