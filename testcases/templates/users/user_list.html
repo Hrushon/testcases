@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load thumbnail %}
+{% block title %}
+  Результаты пользователей
+{% endblock %}
+{% block content %}
+  <div class="container py-4">
+    <h1 class="py-1 text-center text-info">Результаты пользователей</h1>
+    <div class="row g-0">
+      {% for user in object_list %}
+        <div class="col-12 col-sm-3">
+          {% thumbnail user.photo "50x50" crop="center" upscale=True as im %}
+            <img class="card-img p-2" src="{{ im.url }}">
+          {% endthumbnail %}
+        </div>
+        <div class="col-12 col-sm-3">
+          <div class="card h-100" 
+            style="background-color: #{{ user.color }};">
+            <div class="card-body">
+              <h2 class="card-text text-center">
+                {{ user.get_full_name }}
+              </h2>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-sm-3">
+          <div class="card h-100" 
+            style="background-color: #{{ user.color }};">
+            <div class="card-body">
+              <h4 class="card-text text-center">
+                из {{ user.tests_started }} тестов
+                сдано {{ user.tests_success }}
+              </h4>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-sm-3">
+          <div class="card h-100" 
+            style="background-color: #{{ user.color }};">
+            <div class="card-body">
+              <h4 class="card-text text-center">
+                получено монет: {{ user.wallet.total_won }}
+                <i class="bi bi-coin" style="color: gold;"></i>
+              </h4>
+            </div>
+          </div>
+        </div>
+      {% empty %}
+        <p class="text-center">
+          Пользователей еще нет!<br>
+        </p>
+      {% endfor %}
+      {% include 'includes/paginator.html' %}
+    </div>
+  </div>
+{% endblock %}

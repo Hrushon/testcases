@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+  Главная страница
+{% endblock %}
+{% block content %}
+  <div class="container py-4">
+    <div class="card shadow-lg rounded">
+      <div class="row g-0">
+        <div class="col-12 col-sm-3">
+          <img src="{% static "img/index/index_img.png" %}"
+            class="img-fluid w-100" alt="card-horizontal-image"
+          >
+        </div>
+        <div class="col-12 col-sm-9">
+          <div class="card-body">
+            <h5 class="card-title">
+              Рады Вас видеть на сайте сервиса "Тестовые задания"
+            </h5>
+            <p class="card-text lh-sm">
+              Здесь Вы сможете подобрать себе тест согласно предложенным темам
+              и проверить свои знания.<br>По итогу успешного прохождения теста
+              Вам будет начислено определенное количество монет, которые можно
+              будет потратить в "Личном кабинете" на изменение цвета фона
+              Вашего персонального профиля и надписи логина. Это будет
+              отличать Вас от других.<br>Пользователи набравшие максимальное
+              количество монет попадут на самый верх нашего списка.<br>
+              Удачи в прохождении тестов.
+            </p>
+            <p class="card-text"><small class="text-muted">
+              <i 
+                class="bi bi-envelope-paper"
+                style="font-size: 1.5rem; color: cornflowerblue;"
+              ></i>
+              Пожелания и предложения по работе сервиса просьба отправлять по
+              адресу: test@case.com</small>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

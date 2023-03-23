@@ -1,0 +1,72 @@
+{% load static %}
+{% with request.resolver_match.view_name as view_name %}
+  <nav class="navbar navbar-expand-lg navbar-light" style="background-color: white">
+    <div class="container">
+      <a class="navbar-brand" href="{% url "core:index" %}">
+        <img src="{% static 'img/logo.png' %}"
+          width="50" height="50" class="img-thumbnail" alt="">
+        <span style="color:#778899"><b>Test Cases</b></span>
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Переключатель навигации">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse m-auto" id="navbarNav">
+        <ul class="nav nav-pills ms-auto">
+          {% if view_name in "core:index core:themes-list core:themes-detail core:tests-list" %}
+            <form class="d-flex"
+              {% if action_url %}
+                action="{% url "core:tests-list" %}"
+              {% endif %}
+            >
+              <input class="form-control me-2 m-auto" type="search" name="search" placeholder="Искать тест" aria-label="Search">
+              <button class="btn btn-outline-primary m-auto me-2" type="submit"><i class="bi bi-binoculars-fill" style="font-size: 1.2rem; color: cornflowerblue;"></i></button>
+            </form>
+          {% endif %}
+          {% if user.is_authenticated %}
+            <li class="nav-item">
+              <a class="nav-link
+                {% if view_name  == "users:password_change" %}
+                  active{% endif %}" href="{% url "users:password_change" %}"
+              >Изменить пароль</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url "users:logout" %}"
+              >Выйти</a>
+            </li>
+          {% else %}
+            <li class="nav-item">
+              <a class="nav-link {% if view_name  == "users:login" %}
+                active{% endif %}" href="{% url "users:login" %}">Войти <i class="bi bi-fingerprint" style="font-size: 1.1rem;"></i></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link {% if view_name  == "users:signup" %}
+                active{% endif %}" href="{% url "users:signup" %}">Регистрация</a>
+            </li>
+          {% endif %}
+        </ul>
+      </div>
+    </div>
+  </nav>
+{% endwith %}
+<div class="container d-flex justify-content-between">
+  <span class="fs-5 my-auto me-2" style="color:#778899">
+    <b>Сервис тестовых заданий</b>
+  </span>
+  {% if user.is_authenticated and user.get_full_name %}
+    <span class="text-secondary my-auto me-2">
+      <i class="bi bi-emoji-smile-fill" style="color: orange;"></i><i> Добро пожаловать, 
+      <b style="color: #{{ user.color }};">{{ user.get_full_name }}</b>!</i>
+    </span>
+    <span class="text-secondary my-auto me-2">
+      <i>У Вас 
+        {% if user.wallet.current_sum != 0 %}
+          {{ user.wallet.current_sum }}
+        {% else %}
+          пока нет
+        {% endif %}
+        монет
+      </i>
+      <i class="bi bi-coin" style="color: gold;"></i>
+    </span>
+  {% endif %}
+</div>

@@ -33,6 +33,8 @@ CSRF_TRUSTED_ORIGINS = ['http://127.0.0.1']
 # Application definition
 
 INSTALLED_APPS = [
+    'sorl.thumbnail',
+    'spare_kits.apps.SpareKitsConfig',
     'users.apps.UsersConfig',
     'core.apps.CoreConfig',
     'django.contrib.admin',
@@ -55,10 +57,12 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'testcases.urls'
 
+TEMPLATES_DIR = BASE_DIR / 'templates'
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [TEMPLATES_DIR],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -108,6 +112,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 # Internationalization
 # https://docs.djangoproject.com/en/4.0/topics/i18n/
@@ -126,7 +131,9 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
-STATIC_ROOT = BASE_DIR / 'static'
+STATICFILES_DIRS = [BASE_DIR / 'static']
+
+# STATIC_ROOT = BASE_DIR / 'static'
 
 MEDIA_URL = 'media/'
 
@@ -137,7 +144,18 @@ MEDIA_ROOT = BASE_DIR / 'media'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+LOGIN_URL = 'users:login'
+
+LOGIN_REDIRECT_URL = 'core:index'
+
+LOGOUT_REDIRECT_URL = 'core:index'
+
+CSRF_FAILURE_VIEW = 'spare_kits.views.csrf_failure'
+
 # Минимально возможная награда за прохождение теста
 MIN_PRIZE = 10
 # Максимально возможная награда за прохождение теста
 MAX_PRIZE = 100
+# Максималльное значение процента правильных ответов
+# для успешного прохождения теста
+MAX_PERCENT_SUCCESS = 100
