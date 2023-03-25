@@ -4,9 +4,10 @@ from django.shortcuts import get_object_or_404
 from django.urls import reverse
 from django.views.generic import DetailView, FormView, ListView
 
-from core.forms import TestingDataForm
-from core.models import Attempt, Test, TestingData, Theme
 from users.models import Wallet
+
+from .forms import TestingDataForm
+from .models import Attempt, Test, TestingData, Theme
 
 
 class ThemeListView(ListView):
@@ -125,7 +126,7 @@ class TestDetailView(ListView, FormView):
             pk=self.kwargs['pk'],
         )
         self.attempt, created = Attempt.objects.filter(
-           result=None
+            result=None
         ).get_or_create(
             subject=self.request.user,
             testcase=self.test,
