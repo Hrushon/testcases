@@ -29,8 +29,13 @@
               <h4 class="card-text text-start">
                 <ul>
                   <li>
-                    из {{ user.tests_started }} тестов
-                    сдано {{ user.tests_success }}
+                    общее количество тестирований - {{ user.tests_attempts }}
+                  </li>
+                  <li>
+                    общее количество тестов - {{ user.tests_count }}
+                  </li>
+                  <li>
+                    пройденных тестов - {{ user.tests_success }}
                   </li>
                   <li>
                     заработано монет: {{ user.wallet.total_won }}

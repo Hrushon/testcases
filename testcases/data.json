@@ -63,7 +63,7 @@
         "fields": {
             "answer_text": "потеря части продуктов питания, потеря компаса",
             "question": 1,
-            "correct": true
+            "correct": false
         }
     },
     {

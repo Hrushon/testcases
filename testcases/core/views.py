@@ -1,18 +1,18 @@
 from django.db.models import Count, F, Q
-from django.db.models.functions import Lower
 from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404
 from django.urls import reverse
 from django.views.generic import DetailView, FormView, ListView
 
-from .forms import TestingDataForm
-from .models import Test, TestingData, Theme, UsersAttempt
+from core.forms import TestingDataForm
+from core.models import Attempt, Test, TestingData, Theme
+from users.models import Wallet
 
 
 class ThemeListView(ListView):
     """Представление списка тем тестов."""
 
-    model = Theme
+    queryset = Theme.objects.prefetch_related('tests')
     template_name = "core/themes_list.html"
 
     def get_context_data(self, **kwargs):
@@ -24,7 +24,9 @@ class ThemeListView(ListView):
 class ThemeDetailView(DetailView):
     """Представление списка тестов конкретной темы."""
 
-    model = Theme
+    queryset = Theme.objects.prefetch_related(
+        'tests', 'tests__questions'
+    )
     template_name = "core/test_list.html"
 
     def get_context_data(self, **kwargs):
@@ -40,7 +42,9 @@ class TestListView(ListView):
     Используется при выдаче результатов теста по поисковому запросу.
     """
 
-    queryset = Test.objects.select_related('theme')
+    queryset = Test.objects.select_related(
+        'theme'
+    ).prefetch_related('questions')
     template_name = "core/test_list.html"
 
     def get_queryset(self):
@@ -59,7 +63,7 @@ class TestListView(ListView):
 
 
 class TestDetailView(ListView, FormView):
-    """Представления для проведения тестирования пользователя."""
+    """Представление для проведения тестирования пользователя."""
 
     template_name = 'core/test_detail.html'
     context_object_name = 'question'
@@ -75,7 +79,7 @@ class TestDetailView(ListView, FormView):
 
         form = self.form_class(
             self.request.POST or None,
-            instance=self.attempt.testing_data.filter(answer=None).first(),
+            instance=self.testing_data,
         )
         if form.is_valid():
             form.save()
@@ -102,6 +106,7 @@ class TestDetailView(ListView, FormView):
             )
             return context
         context['attempt'] = self.attempt
+        context['re_passing_test'] = self.re_passing_test
         return context
 
     def get_queryset(self):
@@ -116,11 +121,11 @@ class TestDetailView(ListView, FormView):
 
     def get_testing_data(self):
         self.test = get_object_or_404(
-            Test.objects.select_related(),
+            Test.objects.prefetch_related('questions'),
             pk=self.kwargs['pk'],
         )
-        self.attempt, created = UsersAttempt.objects.filter(
-            Q(result=None)
+        self.attempt, created = Attempt.objects.filter(
+           result=None
         ).get_or_create(
             subject=self.request.user,
             testcase=self.test,
@@ -135,12 +140,10 @@ class TestDetailView(ListView, FormView):
     def create_testing_result(self):
         self.results = TestingData.objects.filter(
             attempt=self.attempt
-        ).values(
-            'attempt'
-        ).annotate(
+        ).aggregate(
             count_corr_answers=Count('answer', filter=Q(answer__correct=True)),
             count_questions=Count('question'),
-        ).get()
+        )
         self.results['percent_corr_answers'] = (
             self.results['count_corr_answers']
             / self.results['count_questions']
@@ -149,21 +152,25 @@ class TestDetailView(ListView, FormView):
         return self.added_attempts_data()
 
     def added_attempts_data(self):
+        self.re_passing_test = Attempt.objects.filter(
+            subject=self.request.user,
+            testcase=self.test,
+            success=True,
+        ).exists()
         self.attempt.result = self.results['percent_corr_answers']
         self.attempt.success = (
             True if self.test.percent_success <= self.attempt.result else False
         )
         self.attempt.save()
-        return self.get_coins_in_wallet()
+        if not self.re_passing_test and self.attempt.success:
+            return self.get_coins_in_wallet()
+        return self.attempt
 
     def get_coins_in_wallet(self):
-        if self.attempt.success:
-            wallet = self.request.user.wallet
-            wallet.current_sum, wallet.total_won = (
-                wallet.current_sum + self.test.prize,
-                wallet.total_won + self.test.prize,
-            )
-            wallet.save()
+        Wallet.objects.filter(owner=self.request.user).update(
+            current_sum=F('current_sum') + self.test.prize,
+            total_won=F('total_won') + self.test.prize,
+        )
         return self.attempt
 
     def get_success_url(self):

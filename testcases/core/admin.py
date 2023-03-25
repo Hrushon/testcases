@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Answer, Question, Test, TestingData, Theme, UsersAttempt
+from .models import Answer, Attempt, Question, Test, TestingData, Theme
 
 
 class AnswerAdmin(admin.ModelAdmin):
@@ -18,7 +18,7 @@ class ThemeAdmin(admin.ModelAdmin):
 
 
 class UsersAttemptInline(admin.TabularInline):
-    model = UsersAttempt
+    model = Attempt
 
 
 class QuestionInline(admin.TabularInline):

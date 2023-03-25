@@ -6,24 +6,24 @@
 {% endblock %}
 {% block content %}
   <div class="container py-4">
-    <div class="card shadow-lg rounded" style="background-color: #{{ user.color }};">
+    <div class="card shadow-lg rounded" style="background-color: #{{ object.color }};">
       <div class="row g-0">
         <div class="col-12 col-sm-3">
-          {% thumbnail user.photo "200x200" crop="center" upscale=True as im %}
+          {% thumbnail object.photo "200x200" crop="center" upscale=True as im %}
             <img class="card-img p-2" src="{{ im.url }}">
           {% endthumbnail %}
         </div>
         <div class="col-12 col-sm-9">
           <div class="card-body">
-            <h4 class="card-title fw-bold">{{ user.get_full_name }}</h4>
-            <h6 class="card-text lh-sm">логин: {{ user.username }}</h6>
-            <h6 class="card-text lh-sm">email: {{ user.email }}</h6>
+            <h4 class="card-title fw-bold">{{ object.get_full_name }}</h4>
+            <h6 class="card-text lh-sm">логин: {{ object.username }}</h6>
+            <h6 class="card-text lh-sm">email: {{ object.email }}</h6>
             <h6 class="card-text lh-sm">
-              получено монет за все время: {{ user.wallet.total_won }}
+              получено монет за все время: {{ object.wallet.total_won }}
               <i class="bi bi-coin" style="color: gold;"></i>
             </h6>
             <h6 class="card-text lh-sm">
-              текущее количество монет: {{ user.wallet.current_sum }}
+              текущее количество монет: {{ object.wallet.current_sum }}
               <i class="bi bi-coin" style="color: gold;"></i>
             </h6>
             <br>
@@ -33,9 +33,9 @@
                 <h5 class="card-text lh-sm">
                   Следующий цвет для покупки:
                   <button type="submit" class="btn shadow rounded fw-bold
-                    {% if user.wallet.current_sum < color.cost %} disabled{% endif %}"
+                    {% if object.wallet.current_sum < color.cost %} disabled{% endif %}"
                     style="background-color: #{{ color.hex_code }};">
-                  {% if user.wallet.current_sum < color.cost %}
+                  {% if object.wallet.current_sum < color.cost %}
                     Мало монет
                   {% else %}
                     Купить
