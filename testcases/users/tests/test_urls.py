@@ -88,7 +88,7 @@ class UsersUrlsTests(TestCase):
                 'template': 'users/logged_out.html',
             },
         }
-    
+
     @classmethod
     def tearDownClass(cls):
         """Прибирает за собой."""
