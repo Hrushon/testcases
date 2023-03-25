@@ -5,7 +5,6 @@ from django.urls import reverse
 from django.views.generic import DetailView, FormView, ListView
 
 from users.models import Wallet
-
 from .forms import TestingDataForm
 from .models import Attempt, Test, TestingData, Theme
 
