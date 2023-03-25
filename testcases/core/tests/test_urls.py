@@ -70,18 +70,12 @@ class CoreUrlsTests(TestCase):
                 }),
                 'template': 'core/test_detail.html',
             },
-            'TESTS_RESULT': {
-                'url': reverse('core:tests-result', kwargs={
-                    'pk': cls.test.id,
-                }),
-                'template': 'core/test_detail.html',
-            },
             'UNEXISTING_PAGE': {
                 'url': '/unexisting_page/',
                 'template': 'errors/404.html',
             },
         }
-    
+
     @classmethod
     def tearDownClass(cls):
         """Прибирает за собой."""
@@ -106,9 +100,8 @@ class CoreUrlsTests(TestCase):
             for test_user in (self.guest_client, self.authorized_client):
                 with self.subTest(page=page):
                     status = HTTPStatus.OK
-                    if test_user is self.guest_client and title in (
-                        'TESTS_DETAIL_PAGE', 'TESTS_RESULT'
-                    ):
+                    if test_user is self.guest_client \
+                        and title == 'TESTS_DETAIL_PAGE':
                         status = HTTPStatus.FOUND
                     elif title == 'UNEXISTING_PAGE':
                         status = HTTPStatus.NOT_FOUND
@@ -117,13 +110,9 @@ class CoreUrlsTests(TestCase):
 
     def test_redirects_urls(self):
         """Проверяет адрес редиректов неавторизованного пользователя."""
-        for page in (
-            self.PAGES['TESTS_DETAIL_PAGE']['url'],
-            self.PAGES['TESTS_RESULT']['url'],
-        ):
-            with self.subTest(page=page):
-                response = self.guest_client.get(page)
-                self.assertRedirects(response, f'/users/login/?next={page}')
+        page = self.PAGES['TESTS_DETAIL_PAGE']['url']
+        response = self.guest_client.get(page)
+        self.assertRedirects(response, f'/users/login/?next={page}')
 
     def test_urls_uses_correct_template(self):
         """Проверяет использование верных шаблонов."""

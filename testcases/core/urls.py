@@ -24,9 +24,4 @@ urlpatterns = [
         'tests/<int:pk>/', login_required(views.TestDetailView.as_view()),
         name='tests-detail'
     ),
-    path(
-        'tests/<int:pk>/result/', login_required(TemplateView.as_view(
-            template_name='core/test_detail.html'
-        )), name='tests-result'
-    ),
 ]
