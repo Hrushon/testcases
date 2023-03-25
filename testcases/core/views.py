@@ -13,7 +13,7 @@ class ThemeListView(ListView):
     """Представление списка тем тестов."""
 
     queryset = Theme.objects.prefetch_related('tests')
-    template_name = "core/themes_list.html"
+    template_name = 'core/themes_list.html'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -27,7 +27,7 @@ class ThemeDetailView(DetailView):
     queryset = Theme.objects.prefetch_related(
         'tests', 'tests__questions'
     )
-    template_name = "core/test_list.html"
+    template_name = 'core/test_list.html'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -45,7 +45,7 @@ class TestListView(ListView):
     queryset = Test.objects.select_related(
         'theme'
     ).prefetch_related('questions')
-    template_name = "core/test_list.html"
+    template_name = 'core/test_list.html'
 
     def get_queryset(self):
         search_query = self.request.GET.get('search')

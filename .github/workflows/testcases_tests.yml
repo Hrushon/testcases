@@ -23,3 +23,6 @@ jobs:
     - name: Test with flake8
       run: |
         python -m flake8
+    - name: Test with Unittest
+      run: |
+        python testcases/manage.py test core users
