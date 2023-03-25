@@ -90,8 +90,8 @@ class Test(models.Model):
         return f'{self.title} ({self.theme})'
 
 
-class UsersAttempt(models.Model):
-    """Промежуточная модель для связывания пользователей и тестов."""
+class Attempt(models.Model):
+    """Промежуточная модель попытки прохождения теста пользователем."""
 
     subject = models.ForeignKey(
         User,
@@ -156,7 +156,7 @@ class Question(models.Model):
         """
         Сортирует и добавляет названия в админке.
         """
-        ordering = ('question_text',)
+        ordering = ('?',)
         verbose_name = 'вопрос'
         verbose_name_plural = 'вопросы'
 
@@ -218,7 +218,7 @@ class TestingData(models.Model):
         null=True,
     )
     attempt = models.ForeignKey(
-        UsersAttempt,
+        Attempt,
         related_name='testing_data',
         on_delete=models.CASCADE,
         verbose_name='попытка',

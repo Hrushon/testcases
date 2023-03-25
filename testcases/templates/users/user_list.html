@@ -10,38 +10,38 @@
     <div class="row g-0">
       {% for user in object_list %}
         <div class="col-12 col-sm-3">
-          {% thumbnail user.photo "50x50" crop="center" upscale=True as im %}
-            <img class="card-img p-2" src="{{ im.url }}">
-          {% endthumbnail %}
-        </div>
-        <div class="col-12 col-sm-3">
           <div class="card h-100" 
             style="background-color: #{{ user.color }};">
             <div class="card-body">
-              <h2 class="card-text text-center">
+              {% thumbnail user.photo "100x100" crop="center" upscale=True as im %}
+                <img class="card-img p-2" src="{{ im.url }}">
+              {% endthumbnail %}
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-sm-9">
+          <div class="card h-100" 
+            style="background-color: #{{ user.color }};">
+            <div class="card-body">
+              <h2 class="card-text text-center py-3">
                 {{ user.get_full_name }}
               </h2>
-            </div>
-          </div>
-        </div>
-        <div class="col-12 col-sm-3">
-          <div class="card h-100" 
-            style="background-color: #{{ user.color }};">
-            <div class="card-body">
-              <h4 class="card-text text-center">
-                из {{ user.tests_started }} тестов
-                сдано {{ user.tests_success }}
-              </h4>
-            </div>
-          </div>
-        </div>
-        <div class="col-12 col-sm-3">
-          <div class="card h-100" 
-            style="background-color: #{{ user.color }};">
-            <div class="card-body">
-              <h4 class="card-text text-center">
-                получено монет: {{ user.wallet.total_won }}
-                <i class="bi bi-coin" style="color: gold;"></i>
+              <h4 class="card-text text-start">
+                <ul>
+                  <li>
+                    общее количество тестирований - {{ user.tests_attempts }}
+                  </li>
+                  <li>
+                    общее количество тестов - {{ user.tests_count }}
+                  </li>
+                  <li>
+                    пройденных тестов - {{ user.tests_success }}
+                  </li>
+                  <li>
+                    заработано монет: {{ user.wallet.total_won }}
+                    <i class="bi bi-coin" style="color: black;"></i>
+                  </li>
+                </ul>
               </h4>
             </div>
           </div>

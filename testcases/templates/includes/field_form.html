@@ -4,7 +4,11 @@
     <label for="{{ field.id_for_label }}">
       {{ field.label }}
     </label>
-    {{ field }}
+    {% if request.resolver_match.view_name == "core:tests-detail" %}
+      {{ field|addclass:"form-check" }}
+    {% else %}
+      {{ field|addclass:"form-control" }}
+    {% endif %}
     {% if field.help_text %}
       <small id="{{ field.id_for_label }}-help"
         class="form-text text-muted">

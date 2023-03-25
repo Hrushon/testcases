@@ -10,7 +10,7 @@
   {% define object.tests.all as object_list %}
   {% define 'В данной теме пока нет тестов!' as empty_list %}
 {% else %}
-  {% define 'Пока нет ни одного теста!' as empty_list %}
+  {% define 'Не найдено ни одного теста!' as empty_list %}
 {% endif %}
   <div class="container py-4">
     {% if view_name == "core:themes-detail" %}
