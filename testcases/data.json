@@ -24,6 +24,30 @@
         }
     },
     {
+        "model": "core.test",
+        "pk": 3,
+        "fields": {
+            "title": "Тест по информатике",
+            "theme": 3,
+            "date_creation": "2023-03-25",
+            "author": 1,
+            "prize": 100,
+            "percent_success": 65
+        }
+    },
+    {
+        "model": "core.test",
+        "pk": 4,
+        "fields": {
+            "title": "Еще один тест по истории",
+            "theme": 2,
+            "date_creation": "2023-03-25",
+            "author": 1,
+            "prize": 50,
+            "percent_success": 75
+        }
+    },
+    {
         "model": "core.theme",
         "pk": 1,
         "fields": {
@@ -37,6 +61,166 @@
         "fields": {
             "title": "История",
             "slug": "history"
+        }
+    },
+    {
+        "model": "core.theme",
+        "pk": 3,
+        "fields": {
+            "title": "Информатика",
+            "slug": "it"
+        }
+    },
+    {
+        "model": "core.question",
+        "pk": 1,
+        "fields": {
+            "question_text": "Из перечисленных ниже причин выберите те, которые являются причинами вынужденного автономного существования в природных условиях",
+            "test_base": 1
+        }
+    },
+    {
+        "model": "core.question",
+        "pk": 2,
+        "fields": {
+            "question_text": "Готовясь к походу, вам необходимо правильно подобрать одежду. Каким нижеперечисленным требованиям она должна соответствовать",
+            "test_base": 1
+        }
+    },
+    {
+        "model": "core.question",
+        "pk": 3,
+        "fields": {
+            "question_text": "От каких поражающих факторов оружия массового поражения защищает убежище",
+            "test_base": 1
+        }
+    },
+    {
+        "model": "core.question",
+        "pk": 4,
+        "fields": {
+            "question_text": "Вступление Николая II на престол произошло в",
+            "test_base": 2
+        }
+    },
+    {
+        "model": "core.question",
+        "pk": 5,
+        "fields": {
+            "question_text": "Кто из названных государственных деятелей занимал пост министра внутренних дел с 1904 г. и предложил императору Николаю II программу либеральных преобразований",
+            "test_base": 2
+        }
+    },
+    {
+        "model": "core.question",
+        "pk": 6,
+        "fields": {
+            "question_text": "В создании Партии социалистов-революционеров в 1902 г. видную роль играл",
+            "test_base": 2
+        }
+    },
+    {
+        "model": "core.question",
+        "pk": 7,
+        "fields": {
+            "question_text": "Большевики и меньшевики расходились в вопросе о",
+            "test_base": 2
+        }
+    },
+    {
+        "model": "core.question",
+        "pk": 8,
+        "fields": {
+            "question_text": "Какой термин связан с сохранявшимися в царствование Николая II ограничениями по отношению к евреям",
+            "test_base": 2
+        }
+    },
+    {
+        "model": "core.question",
+        "pk": 9,
+        "fields": {
+            "question_text": "Какой термин связан с царствованием Николая II",
+            "test_base": 2
+        }
+    },
+    {
+        "model": "core.question",
+        "pk": 10,
+        "fields": {
+            "question_text": "RGB– код серого цвета записывается как",
+            "test_base": 3
+        }
+    },
+    {
+        "model": "core.question",
+        "pk": 11,
+        "fields": {
+            "question_text": "DNS-сервер корневой зоны не может иметь имя",
+            "test_base": 3
+        }
+    },
+    {
+        "model": "core.question",
+        "pk": 12,
+        "fields": {
+            "question_text": "WAN– это",
+            "test_base": 3
+        }
+    },
+    {
+        "model": "core.question",
+        "pk": 13,
+        "fields": {
+            "question_text": "LAN– это сеть",
+            "test_base": 3
+        }
+    },
+    {
+        "model": "core.question",
+        "pk": 14,
+        "fields": {
+            "question_text": "Адрес 127.0.0.1 используется",
+            "test_base": 3
+        }
+    },
+    {
+        "model": "core.question",
+        "pk": 15,
+        "fields": {
+            "question_text": "1 сентября 1917 г. Россия была провозглашена ...",
+            "test_base": 4
+        }
+    },
+    {
+        "model": "core.question",
+        "pk": 16,
+        "fields": {
+            "question_text": "«Циркуляром о кухаркиных детях» запрещалось ...",
+            "test_base": 4
+        }
+    },
+    {
+        "model": "core.question",
+        "pk": 17,
+        "fields": {
+            "question_text": "Александр II был убит народовольцами ...",
+            "test_base": 4
+        }
+    },
+    {
+        "model": "core.question",
+        "pk": 18,
+        "fields": {
+            "question_text": "В 1378 г. русское войско разгромило ордынцев на реке ...",
+            "test_base": 4
+        }
+    },
+    {
+        "model": "core.question",
+        "pk": 19,
+        "fields": {
+            "question_text": "В 1834 г. полиция раскрыла кружок, основанный в 1831 г. в Московском университете ...",
+            "test_base": 4
         }
     },
     {
@@ -346,75 +530,938 @@
         }
     },
     {
-        "model": "core.question",
+        "model": "core.answer",
+        "pk": 35,
+        "fields": {
+            "answer_text": "#FF0000",
+            "question": 10,
+            "correct": false
+        }
+    },
+    {
+        "model": "core.answer",
+        "pk": 36,
+        "fields": {
+            "answer_text": "#00FF00",
+            "question": 10,
+            "correct": false
+        }
+    },
+    {
+        "model": "core.answer",
+        "pk": 37,
+        "fields": {
+            "answer_text": "#0000FF",
+            "question": 10,
+            "correct": false
+        }
+    },
+    {
+        "model": "core.answer",
+        "pk": 38,
+        "fields": {
+            "answer_text": "#808080",
+            "question": 10,
+            "correct": true
+        }
+    },
+    {
+        "model": "core.answer",
+        "pk": 39,
+        "fields": {
+            "answer_text": "a.root_server.net",
+            "question": 11,
+            "correct": false
+        }
+    },
+    {
+        "model": "core.answer",
+        "pk": 40,
+        "fields": {
+            "answer_text": "b.root_server.net",
+            "question": 11,
+            "correct": false
+        }
+    },
+    {
+        "model": "core.answer",
+        "pk": 41,
+        "fields": {
+            "answer_text": "d.root.server.org",
+            "question": 11,
+            "correct": true
+        }
+    },
+    {
+        "model": "core.answer",
+        "pk": 42,
+        "fields": {
+            "answer_text": "c.root_server.net",
+            "question": 11,
+            "correct": false
+        }
+    },
+    {
+        "model": "core.answer",
+        "pk": 43,
+        "fields": {
+            "answer_text": "Локальная компьютерная сеть",
+            "question": 12,
+            "correct": false
+        }
+    },
+    {
+        "model": "core.answer",
+        "pk": 44,
+        "fields": {
+            "answer_text": "Глобальная компьютерная сеть",
+            "question": 12,
+            "correct": true
+        }
+    },
+    {
+        "model": "core.answer",
+        "pk": 45,
+        "fields": {
+            "answer_text": "Сеть с иерархической топологией.",
+            "question": 12,
+            "correct": false
+        }
+    },
+    {
+        "model": "core.answer",
+        "pk": 46,
+        "fields": {
+            "answer_text": "Сеть с многосвязной топологией.",
+            "question": 12,
+            "correct": false
+        }
+    },
+    {
+        "model": "core.answer",
+        "pk": 47,
+        "fields": {
+            "answer_text": "Локальная компьютерная",
+            "question": 13,
+            "correct": true
+        }
+    },
+    {
+        "model": "core.answer",
+        "pk": 48,
+        "fields": {
+            "answer_text": "Глобальная компьютерная",
+            "question": 13,
+            "correct": false
+        }
+    },
+    {
+        "model": "core.answer",
+        "pk": 49,
+        "fields": {
+            "answer_text": "С иерархической топологией.",
+            "question": 13,
+            "correct": false
+        }
+    },
+    {
+        "model": "core.answer",
+        "pk": 50,
+        "fields": {
+            "answer_text": "С многосвязной топологией.",
+            "question": 13,
+            "correct": false
+        }
+    },
+    {
+        "model": "core.answer",
+        "pk": 51,
+        "fields": {
+            "answer_text": "как шлюз по умолчанию",
+            "question": 14,
+            "correct": false
+        }
+    },
+    {
+        "model": "core.answer",
+        "pk": 52,
+        "fields": {
+            "answer_text": "для широковещательной связи",
+            "question": 14,
+            "correct": false
+        }
+    },
+    {
+        "model": "core.answer",
+        "pk": 53,
+        "fields": {
+            "answer_text": "для связи с самим собой",
+            "question": 14,
+            "correct": true
+        }
+    },
+    {
+        "model": "core.answer",
+        "pk": 54,
+        "fields": {
+            "answer_text": "для связи с DNS сервером",
+            "question": 14,
+            "correct": false
+        }
+    },
+    {
+        "model": "core.answer",
+        "pk": 55,
+        "fields": {
+            "answer_text": "республикой",
+            "question": 15,
+            "correct": true
+        }
+    },
+    {
+        "model": "core.answer",
+        "pk": 56,
+        "fields": {
+            "answer_text": "дуалистической монархией",
+            "question": 15,
+            "correct": false
+        }
+    },
+    {
+        "model": "core.answer",
+        "pk": 57,
+        "fields": {
+            "answer_text": "федерацией советских республик",
+            "question": 15,
+            "correct": false
+        }
+    },
+    {
+        "model": "core.answer",
+        "pk": 58,
+        "fields": {
+            "answer_text": "конституционной монархией",
+            "question": 15,
+            "correct": false
+        }
+    },
+    {
+        "model": "core.answer",
+        "pk": 59,
+        "fields": {
+            "answer_text": "принимать в университеты детей бедных горожан",
+            "question": 16,
+            "correct": false
+        }
+    },
+    {
+        "model": "core.answer",
+        "pk": 60,
+        "fields": {
+            "answer_text": "принимать в гимназии детей кучеров, лакеев, прачек, мелких лавочников",
+            "question": 16,
+            "correct": true
+        }
+    },
+    {
+        "model": "core.answer",
+        "pk": 61,
+        "fields": {
+            "answer_text": "обучаться в одном классе детей разных сословий",
+            "question": 16,
+            "correct": false
+        }
+    },
+    {
+        "model": "core.answer",
+        "pk": 62,
+        "fields": {
+            "answer_text": "отказывать в поступлении в гимназии детей кучеров, лакеев, прачек, мелких лавочников",
+            "question": 16,
+            "correct": false
+        }
+    },
+    {
+        "model": "core.answer",
+        "pk": 63,
+        "fields": {
+            "answer_text": "1 марта 1881 г.",
+            "question": 17,
+            "correct": true
+        }
+    },
+    {
+        "model": "core.answer",
+        "pk": 64,
+        "fields": {
+            "answer_text": "14 декабря 1825 г.",
+            "question": 17,
+            "correct": false
+        }
+    },
+    {
+        "model": "core.answer",
+        "pk": 65,
+        "fields": {
+            "answer_text": "19 февраля 1861 г.",
+            "question": 17,
+            "correct": false
+        }
+    },
+    {
+        "model": "core.answer",
+        "pk": 66,
+        "fields": {
+            "answer_text": "1 марта 1885 г.",
+            "question": 17,
+            "correct": false
+        }
+    },
+    {
+        "model": "core.answer",
+        "pk": 67,
+        "fields": {
+            "answer_text": "Воже",
+            "question": 18,
+            "correct": true
+        }
+    },
+    {
+        "model": "core.answer",
+        "pk": 68,
+        "fields": {
+            "answer_text": "Дон",
+            "question": 18,
+            "correct": false
+        }
+    },
+    {
+        "model": "core.answer",
+        "pk": 69,
+        "fields": {
+            "answer_text": "Калке",
+            "question": 18,
+            "correct": false
+        }
+    },
+    {
+        "model": "core.answer",
+        "pk": 70,
+        "fields": {
+            "answer_text": "Угре",
+            "question": 18,
+            "correct": false
+        }
+    },
+    {
+        "model": "core.answer",
+        "pk": 71,
+        "fields": {
+            "answer_text": "А. И. Герценом и Н. П. Огаревым",
+            "question": 19,
+            "correct": true
+        }
+    },
+    {
+        "model": "core.answer",
+        "pk": 72,
+        "fields": {
+            "answer_text": "П. И. Пестелем и Н. М. Муравьевым",
+            "question": 19,
+            "correct": false
+        }
+    },
+    {
+        "model": "core.answer",
+        "pk": 73,
+        "fields": {
+            "answer_text": "С. С. Уваровым и Н. М. Карамзиным",
+            "question": 19,
+            "correct": false
+        }
+    },
+    {
+        "model": "core.answer",
+        "pk": 74,
+        "fields": {
+            "answer_text": "М. М. Сперанским и А. Н. Радищевым",
+            "question": 19,
+            "correct": false
+        }
+    },
+    {
+        "model": "core.attempt",
         "pk": 1,
         "fields": {
-            "question_text": "Из перечисленных ниже причин выберите те, которые являются причинами вынужденного автономного существования в природных условиях",
-            "test_base": 1
+            "success": true,
+            "subject": 3,
+            "testcase": 1,
+            "date_test": "2023-03-25",
+            "result": "100.00"
         }
     },
     {
-        "model": "core.question",
+        "model": "core.attempt",
         "pk": 2,
         "fields": {
-            "question_text": "Готовясь к походу, вам необходимо правильно подобрать одежду. Каким нижеперечисленным требованиям она должна соответствовать",
-            "test_base": 1
+            "success": true,
+            "subject": 3,
+            "testcase": 1,
+            "date_test": "2023-03-25",
+            "result": "100.00"
         }
     },
     {
-        "model": "core.question",
+        "model": "core.attempt",
         "pk": 3,
         "fields": {
-            "question_text": "От каких поражающих факторов оружия массового поражения защищает убежище",
-            "test_base": 1
+            "success": false,
+            "subject": 3,
+            "testcase": 1,
+            "date_test": "2023-03-25",
+            "result": null
         }
     },
     {
-        "model": "core.question",
+        "model": "core.attempt",
         "pk": 4,
         "fields": {
-            "question_text": "Вступление Николая II на престол произошло в",
-            "test_base": 2
+            "success": true,
+            "subject": 2,
+            "testcase": 1,
+            "date_test": "2023-03-25",
+            "result": "100.00"
         }
     },
     {
-        "model": "core.question",
+        "model": "core.attempt",
         "pk": 5,
         "fields": {
-            "question_text": "Кто из названных государственных деятелей занимал пост министра внутренних дел с 1904 г. и предложил императору Николаю II программу либеральных преобразований",
-            "test_base": 2
+            "success": false,
+            "subject": 1,
+            "testcase": 3,
+            "date_test": "2023-03-25",
+            "result": null
         }
     },
     {
-        "model": "core.question",
+        "model": "core.attempt",
         "pk": 6,
         "fields": {
-            "question_text": "В создании Партии социалистов-революционеров в 1902 г. видную роль играл",
-            "test_base": 2
+            "success": false,
+            "subject": 2,
+            "testcase": 3,
+            "date_test": "2023-03-25",
+            "result": "60.00"
         }
     },
     {
-        "model": "core.question",
+        "model": "core.attempt",
         "pk": 7,
         "fields": {
-            "question_text": "Большевики и меньшевики расходились в вопросе о",
-            "test_base": 2
+            "success": false,
+            "subject": 2,
+            "testcase": 4,
+            "date_test": "2023-03-25",
+            "result": "60.00"
         }
     },
     {
-        "model": "core.question",
+        "model": "core.attempt",
         "pk": 8,
         "fields": {
-            "question_text": "Какой термин связан с сохранявшимися в царствование Николая II ограничениями по отношению к евреям",
-            "test_base": 2
+            "success": false,
+            "subject": 2,
+            "testcase": 4,
+            "date_test": "2023-03-25",
+            "result": "40.00"
         }
     },
     {
-        "model": "core.question",
+        "model": "core.attempt",
         "pk": 9,
         "fields": {
-            "question_text": "Какой термин связан с царствованием Николая II",
-            "test_base": 2
+            "success": false,
+            "subject": 2,
+            "testcase": 4,
+            "date_test": "2023-03-25",
+            "result": "40.00"
+        }
+    },
+    {
+        "model": "core.attempt",
+        "pk": 10,
+        "fields": {
+            "success": true,
+            "subject": 2,
+            "testcase": 4,
+            "date_test": "2023-03-25",
+            "result": "80.00"
+        }
+    },
+    {
+        "model": "core.testingdata",
+        "pk": 1,
+        "fields": {
+            "question": 2,
+            "answer": 4,
+            "attempt": 1
+        }
+    },
+    {
+        "model": "core.testingdata",
+        "pk": 2,
+        "fields": {
+            "question": 1,
+            "answer": 2,
+            "attempt": 1
+        }
+    },
+    {
+        "model": "core.testingdata",
+        "pk": 3,
+        "fields": {
+            "question": 3,
+            "answer": 8,
+            "attempt": 1
+        }
+    },
+    {
+        "model": "core.testingdata",
+        "pk": 4,
+        "fields": {
+            "question": 3,
+            "answer": 8,
+            "attempt": 2
+        }
+    },
+    {
+        "model": "core.testingdata",
+        "pk": 5,
+        "fields": {
+            "question": 1,
+            "answer": 2,
+            "attempt": 2
+        }
+    },
+    {
+        "model": "core.testingdata",
+        "pk": 6,
+        "fields": {
+            "question": 2,
+            "answer": 4,
+            "attempt": 2
+        }
+    },
+    {
+        "model": "core.testingdata",
+        "pk": 7,
+        "fields": {
+            "question": 3,
+            "answer": null,
+            "attempt": 3
+        }
+    },
+    {
+        "model": "core.testingdata",
+        "pk": 8,
+        "fields": {
+            "question": 2,
+            "answer": null,
+            "attempt": 3
+        }
+    },
+    {
+        "model": "core.testingdata",
+        "pk": 9,
+        "fields": {
+            "question": 1,
+            "answer": null,
+            "attempt": 3
+        }
+    },
+    {
+        "model": "core.testingdata",
+        "pk": 10,
+        "fields": {
+            "question": 2,
+            "answer": 4,
+            "attempt": 4
+        }
+    },
+    {
+        "model": "core.testingdata",
+        "pk": 11,
+        "fields": {
+            "question": 3,
+            "answer": 8,
+            "attempt": 4
+        }
+    },
+    {
+        "model": "core.testingdata",
+        "pk": 12,
+        "fields": {
+            "question": 1,
+            "answer": 2,
+            "attempt": 4
+        }
+    },
+    {
+        "model": "core.testingdata",
+        "pk": 13,
+        "fields": {
+            "question": 11,
+            "answer": null,
+            "attempt": 5
+        }
+    },
+    {
+        "model": "core.testingdata",
+        "pk": 14,
+        "fields": {
+            "question": 13,
+            "answer": null,
+            "attempt": 5
+        }
+    },
+    {
+        "model": "core.testingdata",
+        "pk": 15,
+        "fields": {
+            "question": 14,
+            "answer": null,
+            "attempt": 5
+        }
+    },
+    {
+        "model": "core.testingdata",
+        "pk": 16,
+        "fields": {
+            "question": 12,
+            "answer": null,
+            "attempt": 5
+        }
+    },
+    {
+        "model": "core.testingdata",
+        "pk": 17,
+        "fields": {
+            "question": 10,
+            "answer": null,
+            "attempt": 5
+        }
+    },
+    {
+        "model": "core.testingdata",
+        "pk": 18,
+        "fields": {
+            "question": 11,
+            "answer": 39,
+            "attempt": 6
+        }
+    },
+    {
+        "model": "core.testingdata",
+        "pk": 19,
+        "fields": {
+            "question": 13,
+            "answer": 47,
+            "attempt": 6
+        }
+    },
+    {
+        "model": "core.testingdata",
+        "pk": 20,
+        "fields": {
+            "question": 10,
+            "answer": 36,
+            "attempt": 6
+        }
+    },
+    {
+        "model": "core.testingdata",
+        "pk": 21,
+        "fields": {
+            "question": 12,
+            "answer": 44,
+            "attempt": 6
+        }
+    },
+    {
+        "model": "core.testingdata",
+        "pk": 22,
+        "fields": {
+            "question": 14,
+            "answer": 53,
+            "attempt": 6
+        }
+    },
+    {
+        "model": "core.testingdata",
+        "pk": 23,
+        "fields": {
+            "question": 15,
+            "answer": 57,
+            "attempt": 7
+        }
+    },
+    {
+        "model": "core.testingdata",
+        "pk": 24,
+        "fields": {
+            "question": 18,
+            "answer": 67,
+            "attempt": 7
+        }
+    },
+    {
+        "model": "core.testingdata",
+        "pk": 25,
+        "fields": {
+            "question": 17,
+            "answer": 63,
+            "attempt": 7
+        }
+    },
+    {
+        "model": "core.testingdata",
+        "pk": 26,
+        "fields": {
+            "question": 19,
+            "answer": 74,
+            "attempt": 7
+        }
+    },
+    {
+        "model": "core.testingdata",
+        "pk": 27,
+        "fields": {
+            "question": 16,
+            "answer": 60,
+            "attempt": 7
+        }
+    },
+    {
+        "model": "core.testingdata",
+        "pk": 28,
+        "fields": {
+            "question": 15,
+            "answer": 57,
+            "attempt": 8
+        }
+    },
+    {
+        "model": "core.testingdata",
+        "pk": 29,
+        "fields": {
+            "question": 17,
+            "answer": 63,
+            "attempt": 8
+        }
+    },
+    {
+        "model": "core.testingdata",
+        "pk": 30,
+        "fields": {
+            "question": 16,
+            "answer": 62,
+            "attempt": 8
+        }
+    },
+    {
+        "model": "core.testingdata",
+        "pk": 31,
+        "fields": {
+            "question": 18,
+            "answer": 67,
+            "attempt": 8
+        }
+    },
+    {
+        "model": "core.testingdata",
+        "pk": 32,
+        "fields": {
+            "question": 19,
+            "answer": 72,
+            "attempt": 8
+        }
+    },
+    {
+        "model": "core.testingdata",
+        "pk": 33,
+        "fields": {
+            "question": 16,
+            "answer": 61,
+            "attempt": 9
+        }
+    },
+    {
+        "model": "core.testingdata",
+        "pk": 34,
+        "fields": {
+            "question": 19,
+            "answer": 74,
+            "attempt": 9
+        }
+    },
+    {
+        "model": "core.testingdata",
+        "pk": 35,
+        "fields": {
+            "question": 15,
+            "answer": 57,
+            "attempt": 9
+        }
+    },
+    {
+        "model": "core.testingdata",
+        "pk": 36,
+        "fields": {
+            "question": 18,
+            "answer": 67,
+            "attempt": 9
+        }
+    },
+    {
+        "model": "core.testingdata",
+        "pk": 37,
+        "fields": {
+            "question": 17,
+            "answer": 63,
+            "attempt": 9
+        }
+    },
+    {
+        "model": "core.testingdata",
+        "pk": 38,
+        "fields": {
+            "question": 19,
+            "answer": 71,
+            "attempt": 10
+        }
+    },
+    {
+        "model": "core.testingdata",
+        "pk": 39,
+        "fields": {
+            "question": 16,
+            "answer": 60,
+            "attempt": 10
+        }
+    },
+    {
+        "model": "core.testingdata",
+        "pk": 40,
+        "fields": {
+            "question": 18,
+            "answer": 67,
+            "attempt": 10
+        }
+    },
+    {
+        "model": "core.testingdata",
+        "pk": 41,
+        "fields": {
+            "question": 17,
+            "answer": 63,
+            "attempt": 10
+        }
+    },
+    {
+        "model": "core.testingdata",
+        "pk": 42,
+        "fields": {
+            "question": 15,
+            "answer": 57,
+            "attempt": 10
+        }
+    },
+    {
+        "model": "users.user",
+        "pk": 1,
+        "fields": {
+            "password": "pbkdf2_sha256$320000$pb9xNhqQJbVNB21m2HrHA9$RCoitXPGK6+OwtfXUT5vtCa0a7GTQHny73yQalZLrVE=",
+            "last_login": "2023-03-25T13:26:46.273Z",
+            "is_superuser": true,
+            "username": "test",
+            "email": "test@case.com",
+            "is_staff": true,
+            "is_active": true,
+            "date_joined": "2023-03-18T03:52:44Z",
+            "first_name": "Тест",
+            "last_name": "Тестович",
+            "photo": "user_avatar/default_user.jpg",
+            "color": 4,
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "users.user",
+        "pk": 2,
+        "fields": {
+            "password": "pbkdf2_sha256$320000$aDd3dSMWASoWKF4965wNES$sw9eanPPHAyAxffY8Gq1Uxbs2bq+RnGah9UOWKKtt/o=",
+            "last_login": "2023-03-25T13:51:18.460Z",
+            "is_superuser": false,
+            "username": "vasya",
+            "email": "vasya@ya.ru",
+            "is_staff": false,
+            "is_active": true,
+            "date_joined": "2023-03-25T13:23:43.050Z",
+            "first_name": "Василий",
+            "last_name": "Пенкин",
+            "photo": "user_avatar/default_user.jpg",
+            "color": 2,
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "users.user",
+        "pk": 3,
+        "fields": {
+            "password": "pbkdf2_sha256$320000$lNqlvpDGXLwVJ1MuuIN6Tc$LQt/LfXfaa4TUAkE4OJUU/EyTfykG4QuIHjOhIFf/0Q=",
+            "last_login": "2023-03-25T13:24:45.118Z",
+            "is_superuser": false,
+            "username": "pittbull",
+            "email": "brad@mail.ru",
+            "is_staff": false,
+            "is_active": true,
+            "date_joined": "2023-03-25T13:24:33.881Z",
+            "first_name": "Брэд",
+            "last_name": "Питт",
+            "photo": "user_avatar/default_user.jpg",
+            "color": 1,
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "users.wallet",
+        "pk": 1,
+        "fields": {
+            "owner": 1,
+            "total_won": 1000,
+            "current_sum": 400
+        }
+    },
+    {
+        "model": "users.wallet",
+        "pk": 2,
+        "fields": {
+            "owner": 2,
+            "total_won": 100,
+            "current_sum": 0
+        }
+    },
+    {
+        "model": "users.wallet",
+        "pk": 3,
+        "fields": {
+            "owner": 3,
+            "total_won": 50,
+            "current_sum": 50
         }
     },
     {
@@ -471,35 +1518,6 @@
         "fields": {
             "hex_code": "DC143C",
             "cost": 600
-        }
-    },
-    {
-        "model": "users.wallet",
-        "pk": 1,
-        "fields": {
-            "owner": 1,
-            "total_won": 1000,
-            "current_sum": 1000
-        }
-    },
-    {
-        "model": "users.user",
-        "pk": 1,
-        "fields": {
-            "password": "pbkdf2_sha256$320000$pb9xNhqQJbVNB21m2HrHA9$RCoitXPGK6+OwtfXUT5vtCa0a7GTQHny73yQalZLrVE=",
-            "last_login": "2023-03-19T06:18:23.104Z",
-            "is_superuser": true,
-            "username": "test",
-            "email": "test@case.com",
-            "is_staff": true,
-            "is_active": true,
-            "date_joined": "2023-03-18T03:52:44Z",
-            "first_name": "Тест",
-            "last_name": "Тестович",
-            "photo": "user_avatar/default_user.jpg",
-            "color": 1,
-            "groups": [],
-            "user_permissions": []
         }
     }
 ]

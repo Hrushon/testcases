@@ -36,15 +36,18 @@ class User(AbstractUser):
     first_name = models.CharField(
         max_length=150,
         verbose_name='имя',
+        help_text='Введите свое имя',
     )
     last_name = models.CharField(
         max_length=150,
         verbose_name='фамилия',
+        help_text='Введите свою фамилию',
     )
     photo = models.ImageField(
         upload_to='users_photos',
         default='user_avatar/default_user.jpg',
         verbose_name='фото пользователя',
+        help_text='Добавьте к профилю свою фотографию',
     )
     color = models.ForeignKey(
         Color,

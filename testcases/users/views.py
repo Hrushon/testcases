@@ -27,7 +27,7 @@ class SignUp(CreateView):
 class UserListView(ListView):
     """Представление для списка пользователей."""
 
-    template_name = 'users/users_list.html'
+    template_name = 'users/user_list.html'
     paginate_by = 10
 
     def get_queryset(self):

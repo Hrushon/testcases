@@ -1,4 +1,4 @@
-name: drink n talk workflow
+name: testcases deploy workflow
 
 on:
   pull_request:
