@@ -30,12 +30,12 @@ class Color(models.Model):
         return f'{self.hex_code}'
 
     @classmethod
-    def get_default_pk(cls):
-        exam, created = cls.objects.get_or_create(
+    def get_default_color(cls):
+        color, created = cls.objects.get_or_create(
             hex_code='D8BFD8',
             cost=0,
         )
-        return exam.pk
+        return color
 
 
 class User(AbstractUser):
@@ -61,7 +61,6 @@ class User(AbstractUser):
         Color,
         related_name='users',
         on_delete=models.SET_NULL,
-        default=Color.get_default_pk,
         null=True,
         blank=True,
         verbose_name='цвет',
@@ -81,6 +80,15 @@ class User(AbstractUser):
         на печать.
         """
         return f'{self.username}'
+
+    def save(self, *args, **kwargs):
+        """
+        При создании объекта пользователя к его атрибутам добавляет начальный
+        цвет.
+        """
+        if not self.pk:
+            self.color = Color.get_default_color()
+        return super(User, self).save(*args, **kwargs)
 
 
 class Wallet(models.Model):
