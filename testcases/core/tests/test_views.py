@@ -5,7 +5,7 @@ from django.test import Client, TestCase
 from django.urls import reverse
 
 from users.models import Color, Wallet
-from ..models import Answer, Question, Theme, Test
+from ..models import Answer, Attempt, Question, Test, TestingData, Theme
 
 User = get_user_model()
 
@@ -74,7 +74,6 @@ class CoreViewTests(TestCase):
     def setUp(self):
         """Создает пользователей."""
         cache.clear()
-        self.guest_client = Client()
         self.authorized_client = Client()
         self.authorized_client.force_login(self.user)
 
@@ -85,7 +84,7 @@ class CoreViewTests(TestCase):
         response = self.authorized_client.get(
             self.PAGES['THEMES_LIST_PAGE']
         )
-        object = response.context.get('object_list')[0]
+        object = response.context.get('object_list').first()
 
         self.assertEqual(object.title, self.theme.title)
         self.assertEqual(object.slug, self.theme.slug)
@@ -107,9 +106,9 @@ class CoreViewTests(TestCase):
 
                 if page == 'THEMES_DETAIL_PAGE':
                     self.assertEqual(object.title, self.theme.title)
-                    test = object.tests.all()[0]
+                    test = object.tests.all().first()
                 else:
-                    test = object[0]
+                    test = object.first()
 
                 self.assertEqual(test.title, self.test.title)
                 self.assertEqual(
@@ -136,21 +135,49 @@ class CoreViewTests(TestCase):
         form_field = response.context.get('form').fields.get('answer')
         self.assertIsInstance(form_field, ModelChoiceField)
 
-    def test_testdetail_result_page_show_correct_context(self):
-        """Проверяет корректность возвращаемого view-функцией контекста
-        шаблону страницы результатов теста после успешного завершения теста.
+    def test_testdetail_get_request_correct_create_objects(self):
+        """Проверяет, что при GET-запросе к странице прохождения теста
+        создаются объекты `Попытки` и `Тестовых данных`.
         """
-        total_coins = self.user.wallet.total_won
-        current_coins = self.user.wallet.current_sum
+        self.assertFalse(Attempt.objects.all().exists())
+        self.assertFalse(TestingData.objects.all().exists())
+
         response = self.authorized_client.get(
             self.PAGES['TESTS_DETAIL_PAGE']
         )
+
+        self.assertTrue(Attempt.objects.all().exists())
+        self.assertTrue(TestingData.objects.all().exists())
+
+    def test_testdetail_post_request_correct_create_objects(self):
+        """Проверяет, что при успешном прохождении теста
+        изменяются соответствующие данные объектов `Пользовательского
+        кошелька`, `Попытки` и `Тестовых данных` и возвращается
+        соответствующий контекст.
+        """
+        total_coins = self.user.wallet.total_won
+        current_coins = self.user.wallet.current_sum
+
+        self.assertFalse(Attempt.objects.all().exists())
+        self.assertFalse(TestingData.objects.all().exists())
+
         response = self.authorized_client.post(
             self.PAGES['TESTS_DETAIL_PAGE'],
             data={'answer': [str(self.answer.id)]},
             follow=True,
         )
-        user_db = User.objects.get(id=1)
+
+        self.assertTrue(Attempt.objects.all().exists())
+        self.assertTrue(TestingData.objects.all().exists())
+
+        test = response.context.get('test')
+        attempt = response.context.get('attempt')
+        self.assertEqual(test.title, self.test.title)
+        self.assertEqual(test.prize, self.test.prize)       
+        self.assertEqual(attempt.result, 100)
+        self.assertTrue(attempt.success)
+
+        user_db = User.objects.get(id=self.user.id)
         self.assertEqual(
             user_db.wallet.total_won, total_coins + self.test.prize
         )
