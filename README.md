@@ -66,7 +66,7 @@ sudo docker-compose up -d
 При первом запуске выполняем следующие команды:
 + тестируем приложение:
 ```
-python manage.py test
+sudo docker-compose exec testcases python manage.py test
 ```
 + применяем миграции:
 ```
