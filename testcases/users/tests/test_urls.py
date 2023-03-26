@@ -17,10 +17,6 @@ class UsersUrlsTests(TestCase):
     def setUpClass(cls):
         """Создает экземпляры пользователя, цвета и кошелька."""
         super().setUpClass()
-        cls.color1 = Color.objects.create(
-            hex_code='D8BFD8',
-            cost=0,
-        )
         cls.color2 = Color.objects.create(
             hex_code='D88888',
             cost=50,
@@ -93,7 +89,6 @@ class UsersUrlsTests(TestCase):
     def tearDownClass(cls):
         """Прибирает за собой."""
         super().tearDownClass()
-        cls.color1.delete()
         cls.color2.delete()
         cls.user.delete()
         cls.wallet.delete()

@@ -20,10 +20,6 @@ class CoreUrlsTests(TestCase):
         тестов и тем тестов.
         """
         super().setUpClass()
-        cls.color = Color.objects.create(
-            hex_code='D8BFD8',
-            cost=0,
-        )
         cls.user = User.objects.create_user(username='tester')
         cls.theme = Theme.objects.create(
             title='История',
@@ -80,7 +76,6 @@ class CoreUrlsTests(TestCase):
     def tearDownClass(cls):
         """Прибирает за собой."""
         super().tearDownClass()
-        cls.color.delete()
         cls.user.delete()
         cls.theme.delete()
         cls.test.delete()
