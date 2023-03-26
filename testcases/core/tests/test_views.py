@@ -19,10 +19,6 @@ class CoreViewTests(TestCase):
         тестов, пользовательских попыток, статистики и тем тестов.
         """
         super().setUpClass()
-        cls.color = Color.objects.create(
-            hex_code='D8BFD8',
-            cost=0,
-        )
         cls.user = User.objects.create_user(username='tester')
         cls.wallet = Wallet.objects.create(
             owner=cls.user,
@@ -64,7 +60,6 @@ class CoreViewTests(TestCase):
     def tearDownClass(cls):
         """Прибирает за собой."""
         super().tearDownClass()
-        cls.color.delete()
         cls.user.delete()
         cls.theme.delete()
         cls.test.delete()

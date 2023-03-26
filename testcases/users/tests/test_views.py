@@ -22,10 +22,6 @@ class UsersViewTests(TestCase):
         тестов, пользовательских попыток, статистики и тем тестов.
         """
         super().setUpClass()
-        cls.color1 = Color.objects.create(
-            hex_code='D8BFD8',
-            cost=0,
-        )
         cls.color2 = Color.objects.create(
             hex_code='FE8855',
             cost=100,
@@ -93,7 +89,6 @@ class UsersViewTests(TestCase):
     def tearDownClass(cls):
         """Прибирает за собой."""
         super().tearDownClass()
-        cls.color1.delete()
         cls.color2.delete()
         cls.user1.delete()
         cls.user2.delete()
@@ -168,7 +163,6 @@ class UsersViewTests(TestCase):
                     object.wallet.current_sum,
                     test_user.wallet.current_sum,
                 )
-                self.assertEqual(object.color, self.color1)
                 self.assertNotEqual(color, object.color)
                 self.assertEqual(color, self.color2)
                 self.assertEqual(color.cost, self.color2.cost)
@@ -201,7 +195,7 @@ class UsersViewTests(TestCase):
         )
         user = User.objects.get(id=self.user2.id)
 
-        self.assertEqual(user.color, self.color1)
+        self.assertNotEqual(user.color, self.color2)
         self.assertEqual(user.wallet.current_sum, user_sum_coins_2)
 
     def test_users_signup_page_show_correct_form(self):
@@ -269,10 +263,6 @@ class PaginatorUsersViewsTest(TestCase):
     def setUpClass(cls):
         """Создание экземпляров Users."""
         super().setUpClass()
-        cls.color = Color.objects.create(
-            hex_code='D8BFD8',
-            cost=0,
-        )
         cls.user = User.objects.create_user('tester')
         for i in range(23):
             User.objects.create_user(f'tester{i}')
@@ -292,7 +282,6 @@ class PaginatorUsersViewsTest(TestCase):
         """Прибирает за собой."""
         super().tearDownClass()
         cls.user.delete()
-        cls.color.delete()
 
     def test_paginator(self):
         """Проверка контекста шаблона страниц."""

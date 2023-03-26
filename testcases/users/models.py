@@ -28,6 +28,14 @@ class Color(models.Model):
         на печать.
         """
         return f'{self.hex_code}'
+    
+    @classmethod
+    def get_default_pk(cls):
+        exam, created = cls.objects.get_or_create(
+            hex_code='D8BFD8', 
+            cost=0,
+        )
+        return exam.pk
 
 
 class User(AbstractUser):
@@ -53,7 +61,7 @@ class User(AbstractUser):
         Color,
         related_name='users',
         on_delete=models.SET_NULL,
-        default=1,
+        default=Color.get_default_pk,
         null=True,
         blank=True,
         verbose_name='цвет',
