@@ -64,6 +64,10 @@ DB_PORT=5432
 sudo docker-compose up -d
 ```
 При первом запуске выполняем следующие команды:
++ тестируем приложение:
+```
+python manage.py test
+```
 + применяем миграции:
 ```
 sudo docker-compose exec testcases python manage.py migrate
@@ -102,6 +106,10 @@ cd ./testcases
 pip install -r requirements.txt
 ```
 При первом запуске выполняем следующие команды:
++ тестируем приложение:
+```
+python manage.py test
+```
 + применяем миграции:
 ```
 python manage.py migrate
