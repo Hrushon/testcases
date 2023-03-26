@@ -6,7 +6,7 @@ from django.test import Client, TestCase
 from django.urls import reverse
 
 from users.models import Color
-from ..models import Answer, Question, Theme, Test
+from ..models import Answer, Question, Test, Theme
 
 User = get_user_model()
 
