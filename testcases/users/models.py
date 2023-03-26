@@ -28,11 +28,11 @@ class Color(models.Model):
         на печать.
         """
         return f'{self.hex_code}'
-    
+
     @classmethod
     def get_default_pk(cls):
         exam, created = cls.objects.get_or_create(
-            hex_code='D8BFD8', 
+            hex_code='D8BFD8',
             cost=0,
         )
         return exam.pk
